@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <meta name="mobile-web-app-capable" content="yes">
+<link rel="shortcut icon" type="image/png" href="favicon.png"/>
+<title>Memoji</title>
+<style>
+body {
+  background-image: url("Farm-Fresh-Strawberries.jpg");
+  background-color: wheat;
+  margin: 10px;
+  overflow:hidden;
+}
+.flex {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+}
+.flex > div {
+    cursor: default;
+    border-radius: 25%;
+    display: flex; 
+    background: white;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    border: 5px solid tan;
+}
+.flex > div:after {
+    content: ' ';
+    padding-top: 100%;
+    display: table; 
+}
+</style></head><body><div class="flex"></div><div class="flex"></div><p>&nbsp;
+<script src="https://unpkg.com/jquery@2.2.4/dist/jquery.min.js"></script>
+<!--script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script-->
+<script>
+/**
+ * Array.prototype.shuffle.js
+ *
+ * @version 1.0
+ * @author think49
+ */
+Array.prototype.shuffle = function() {
+  var k, t, len = this.length;
+  if (len < 2) return this;
+  while (len) {
+    k = Math.floor(Math.random() * len--);
+    t = this[k];
+    while (k < len) this[k] = this[++k];
+    this[k] = t;
+  }
+  return this;
+};
+
+var card1, card2, animals, emoji = [].concat(
+      Array(36).fill().map((_, i) => String.fromCodePoint(0x1f330 + i)),  // plants & fruits
+      Array(44).fill().map((_, i) => String.fromCodePoint(0x1f400 + i)),  // animals
+      Array(16).fill().map((_, i) => String.fromCodePoint(0x1f42d + i))   // animals faces
+   // Array(28).fill().map((_, i) => String.fromCodePoint(0x1f950 + i)),  // supp food
+   // Array(24).fill().map((_, i) => String.fromCodePoint(0x1f980 + i))   // supp animals
+    );                                                 // 0x1f9.. emoji's not on Android
+
+function init() {
+  card1 = card2 = null;
+  $('.flex').html('');
+
+  animals = emoji.shuffle().slice(0,8);
+  animals = animals.concat(animals).shuffle();
+  animals.forEach(function(_, i) { 
+    $('.flex').first().append( $(`<div id="${i}">&nbsp;</div>`));
+  });
+  $('.flex').last().append( $(`<div>&#x267b;&#xfe0f;</div>`)); // green recycle
+  // https://stackoverflow.com/questions/4974668/what-is-the-unicode-variation-selector
+  console.log(emoji.join(","));
+  onChange();
+
+  $('.flex > div').click(function(e){
+
+    if(e.target.innerText.charCodeAt(0) === 0x267b) {
+      init();
+      return false;
+    }
+
+    if(e.target.innerText.charCodeAt(0) !== 160 ||  // not an empty cell
+      card2 !== null)                               // setTimeout not finished yet!
+        return false;
+
+    var id = e.target.id;
+    $( this ).html( animals[id] );
+    if(card1 === null){
+      card1 = id;
+    } else if( animals[card1] === animals[id] ) {
+      card1 = null;
+    } else {
+      card2 = id;
+      setTimeout(function(){
+        $('#' + card1).html('&nbsp;'); card1 = null;
+        $('#' + card2).html('&nbsp;'); card2 = null;
+      }, 1000);
+    }
+    return false;
+  });
+}
+
+function onChange(){
+  var h = $(window).height(), w = $(window).width(), m, c;
+  m = h > w ? w - 20 : (h - 20) * 4 / 6;
+  c = m / 4 - 20;
+  $('body').css('font-size', c/2);
+  $('.flex').first().css({ 'width': m, 'height': m});
+  $('.flex').last().css({ 'width': m/4, 'height': m/4, 'top': m/5, 'left': m*3/8});
+  $('.flex > div').css({ 'width': c });
+}
+
+$(document).ready(function(){
+  $(window).resize(onChange);
+  init();
+});
+
+</script></body></html>
