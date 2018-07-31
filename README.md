@@ -1,2 +1,2 @@
 # shirha.github.io
-GitJub Pages
+GitHub Pages
