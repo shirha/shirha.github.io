@@ -45,11 +45,11 @@ body {
  */
 Array.prototype.shuffle = function() {
   var k, t, len = this.length;
-  if (len < 2) return this;
-  while (len) {
+  if(len < 2) return this;
+  while(len) {
     k = Math.floor(Math.random() * len--);
     t = this[k];
-    while (k < len) this[k] = this[++k];
+    while(k < len) this[k] = this[++k];
     this[k] = t;
   }
   return this;
@@ -68,9 +68,9 @@ function init() {
   animals = emoji.shuffle().slice(0,8);
   animals = animals.concat(animals).shuffle();
   animals.forEach(function(_, i) { 
-    $('.flex').first().append( $(`<div id="${i}">&nbsp;</div>`));
+    $('.flex').first().append($(`<div id="${i}">&nbsp;</div>`));
   });
-  $('.flex').last().append( $(`<div>&#x267b;&#xfe0f;</div>`)); // green recycle
+  $('.flex').last().append($(`<div>&#x267b;&#xfe0f;</div>`)); // green recycle
   // https://stackoverflow.com/questions/4974668/what-is-the-unicode-variation-selector
   console.log(emoji.join(","));
   onChange();
@@ -103,17 +103,17 @@ function init() {
   });
 }
 
-function onChange(){
+function onChange() {
   var h = $(window).height(), w = $(window).width(), m, c;
   m = h > w ? w - 20 : (h - 20) * 4 / 6;
   c = m / 4 - 20;
   $('body').css('font-size', c/2);
-  $('.flex').first().css({ 'width': m, 'height': m});
-  $('.flex').last().css({ 'width': m/4, 'height': m/4, 'top': Math.min(c,h-m-c-40), 'left': m*3/8});
-  $('.flex > div').css({ 'width': c });                       //         ipad mini
+  $('.flex').first().css({'width': m, 'height': m});
+  $('.flex').last().css({'width': m/4, 'height': m/4, 'top': Math.min(c,h-m-c-40), 'left': m*3/8});
+  $('.flex > div').css({'width': c});                       //         ipad mini
 }
 
-$(document).ready(function(){
+$(document).ready(function() {
   $(window).resize(onChange);
   init();
 });
