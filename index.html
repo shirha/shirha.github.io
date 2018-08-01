@@ -59,8 +59,6 @@ var card1, card2, animals, emoji = [].concat(
       Array(36).fill().map((_, i) => String.fromCodePoint(0x1f330 + i)),  // plants & fruits
       Array(44).fill().map((_, i) => String.fromCodePoint(0x1f400 + i)),  // animals
       Array(16).fill().map((_, i) => String.fromCodePoint(0x1f42d + i))   // animals faces
-   // Array(28).fill().map((_, i) => String.fromCodePoint(0x1f950 + i)),  // supp food
-   // Array(24).fill().map((_, i) => String.fromCodePoint(0x1f980 + i))   // supp animals
     );                                                 // 0x1f9.. emoji's not on Android
 
 function init() {
@@ -111,8 +109,8 @@ function onChange(){
   c = m / 4 - 20;
   $('body').css('font-size', c/2);
   $('.flex').first().css({ 'width': m, 'height': m});
-  $('.flex').last().css({ 'width': m/4, 'height': m/4, 'top': m/5, 'left': m*3/8});
-  $('.flex > div').css({ 'width': c });
+  $('.flex').last().css({ 'width': m/4, 'height': m/4, 'top': Math.min(c,h-m-c-40), 'left': m*3/8});
+  $('.flex > div').css({ 'width': c });                       //         ipad mini
 }
 
 $(document).ready(function(){
