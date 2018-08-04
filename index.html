@@ -55,14 +55,14 @@ Array.prototype.shuffle = function() {
   return this;
 };
 
-var card1, card2, animals, emoji = [].concat(
+var card1, card2, guess, errors, animals, emoji = [].concat(
       Array(36).fill().map((_, i) => String.fromCodePoint(0x1f330 + i)),  // plants & fruits
       Array(44).fill().map((_, i) => String.fromCodePoint(0x1f400 + i)),  // animals
       Array(16).fill().map((_, i) => String.fromCodePoint(0x1f42d + i))   // animals faces
     );                                                 // 0x1f9.. emoji's not on Android
 
 function init() {
-  card1 = card2 = null;
+  card1 = card2 = null, errors = 0, guess = new Array(16).fill(0);
   $('.flex').html('');
 
   animals = emoji.shuffle().slice(0,8);
@@ -77,8 +77,15 @@ function init() {
 
   $('.flex > div').click(function(e){
 
-    if(e.target.innerText.charCodeAt(0) === 0x267b) {
-      init();
+    if(e.target.innerText.charCodeAt(0) === 0x267b) { 
+      if(guess.filter(i => !i).length){
+        init();
+      }else{
+        $('.flex:last > div').html(errors ? `<b><font color="deeppink">${errors}` : '&#x1f496');
+        setTimeout(function(){
+          init();
+        },1000);
+      }
       return false;
     }
 
@@ -87,6 +94,7 @@ function init() {
         return false;
 
     var id = e.target.id;
+    guess[id]++;
     $( this ).html( animals[id] );
     if(card1 === null){
       card1 = id;
@@ -95,6 +103,10 @@ function init() {
     } else {
       card2 = id;
       setTimeout(function(){
+        if(guess[card1] !== 1 || guess[card2] !== 1) {
+          errors++;
+          console.log(animals[card1],guess[card1],animals[card2],guess[card2]);
+        }
         $('#' + card1).html('&nbsp;'); card1 = null;
         $('#' + card2).html('&nbsp;'); card2 = null;
       }, 1000);
@@ -110,7 +122,7 @@ function onChange() {
   $('body').css('font-size', c/2);
   $('.flex').first().css({'width': m, 'height': m});
   $('.flex').last().css({'width': m/4, 'height': m/4, 'top': Math.min(c,h-m-c-40), 'left': m*3/8});
-  $('.flex > div').css({'width': c});                       //         ipad mini
+  $('.flex > div').css({'width': c});                       //          ipad mini
 }
 
 $(document).ready(function() {
