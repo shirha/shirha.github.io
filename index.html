@@ -84,7 +84,7 @@ function init() {
         $('.flex:last > div').html(errors ? `<b><font color="deeppink">${errors}` : '&#x1f496');
         setTimeout(function(){
           init();
-        },1000);
+        },errors ? 1000 : 2000);
       }
       return false;
     }
