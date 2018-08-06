@@ -44,7 +44,7 @@ body {
  * @author think49
  */
 Array.prototype.shuffle = function() {
-  var k, t, len = this.length;
+  let k, t, len = this.length;
   if(len < 2) return this;
   while(len) {
     k = Math.floor(Math.random() * len--);
@@ -55,11 +55,11 @@ Array.prototype.shuffle = function() {
   return this;
 };
 
-var card1, card2, guess, errors, animals, emoji = [].concat(
-      Array(36).fill().map((_, i) => String.fromCodePoint(0x1f330 + i)),  // plants & fruits
-      Array(44).fill().map((_, i) => String.fromCodePoint(0x1f400 + i)),  // animals
-      Array(16).fill().map((_, i) => String.fromCodePoint(0x1f42d + i))   // animals faces
-    );                                                 // 0x1f9.. emoji's not on Android
+let card1, card2, guess, errors, animals, emoji = [].concat(
+  Array(36).fill().map((_, i) => String.fromCodePoint(0x1f330 + i)),  // plants & fruits
+  Array(44).fill().map((_, i) => String.fromCodePoint(0x1f400 + i)),  // animals
+  Array(16).fill().map((_, i) => String.fromCodePoint(0x1f42d + i))   // animals faces
+);                                                 // 0x1f9.. emoji's not on Android
 
 function init() {
   card1 = card2 = null, errors = 0, guess = new Array(16).fill(0);
@@ -70,39 +70,47 @@ function init() {
   animals.forEach(function(_, i) { 
     $('.flex').first().append($(`<div id="${i}">&nbsp;</div>`));
   });
-  $('.flex').last().append($(`<div>&#x267b;&#xfe0f;</div>`)); // green recycle
   // https://stackoverflow.com/questions/4974668/what-is-the-unicode-variation-selector
+  $('.flex').last().append($(`<div>&#x267b;&#xfe0f;</div>`)); // green recycle
   console.log(emoji.join(","));
   onChange();
 
-  $('.flex > div').click(function(e){
+  $('.flex > div').click(function(e) {
 
     if(e.target.innerText.charCodeAt(0) === 0x267b) { 
-      if(guess.filter(i => !i).length){
-        init();
-      }else{
-        $('.flex:last > div').html(errors ? `<b><font color="deeppink">${errors}` : '&#x1f496');
-        setTimeout(function(){
-          init();
-        },errors ? 1000 : 2000);
-      }
+      init();
       return false;
     }
 
-    if(e.target.innerText.charCodeAt(0) !== 160 ||  // not an empty cell
-      card2 !== null)                               // setTimeout not finished yet!
+    if(e.target.innerHTML !== '&nbsp;' ||  // not an empty cell
+      card2 !== null)                      // setTimeout not finished yet!
         return false;
 
-    var id = e.target.id;
+    let id = e.target.id;
     guess[id]++;
     $( this ).html( animals[id] );
-    if(card1 === null){
+
+    if(card1 === null) {
       card1 = id;
+  
     } else if( animals[card1] === animals[id] ) {
       card1 = null;
+
+      let i = 0; 
+      $('.flex:first > div').each((_,e) => {
+        if(e.innerHTML === '&nbsp;') i++;
+      });
+  
+      if(!i) {
+        $('.flex:last > div').html(errors ? `<b><font color="deeppink">${errors}` : '&#x1f496');
+        setTimeout(function() {
+          $('.flex:last > div').html(`<div>&#x267b;&#xfe0f;</div>`);
+        }, errors ? 1000 : 2000);
+      }
+  
     } else {
       card2 = id;
-      setTimeout(function(){
+      setTimeout(function() {
         if(guess[card1] !== 1 || guess[card2] !== 1) {
           errors++;
           console.log(animals[card1],guess[card1],animals[card2],guess[card2]);
@@ -116,7 +124,7 @@ function init() {
 }
 
 function onChange() {
-  var h = $(window).height(), w = $(window).width(), m, c;
+  let h = $(window).height(), w = $(window).width(), m, c;
   m = h > w ? w - 20 : (h - 20) * 4 / 6;
   c = m / 4 - 20;
   $('body').css('font-size', c/2);
