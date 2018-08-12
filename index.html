@@ -72,13 +72,13 @@ function init() {
     $('.flex').first().append($(`<div id="${i}">&nbsp;</div>`));
   });
   // https://stackoverflow.com/questions/4974668/what-is-the-unicode-variation-selector
-  $('.flex').last().append($(`<div>&#x267b;&#xfe0f;</div>`)); // green recycle
+  $('.flex').last().append($(`<div>♻️</div>`)); // green recycle &#x267b;&#xfe0f;
   console.log(emoji.join(","));
   onChange();
 
   $('.flex > div').click(function(e) {
 
-    if(e.target.innerText.charCodeAt(0) === 0x267b) { 
+    if(['♻️','💖'].includes(e.target.innerHTML)) {
       init();
       return false;
     }
@@ -103,10 +103,10 @@ function init() {
       });
   
       if(!i) {
-        $('.flex:last > div').html(errors ? `<b><font color="deeppink">${errors}` : '&#x1f496');
+        $('.flex:last > div').html(errors ? `<b><font color="deeppink">${errors}` : '💖');
         setTimeout(function() {
-          $('.flex:last > div').html(`<div>&#x267b;&#xfe0f;</div>`);
-        }, errors ? 1000 : 2000);
+          $('.flex:last > div').html(`<div>♻️</div>`);
+        }, errors ? 1000 : 9000);
       }
   
     } else {
