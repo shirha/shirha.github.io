@@ -1,4 +1,4 @@
-## Gallery
+# Gallery
 
 [Freecell](http://freecell-mobile.appspot.com/)
 
