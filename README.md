@@ -2,9 +2,11 @@
 
 [Freecell](http://freecell-mobile.appspot.com/)
 
-[Cantonese Dictionary](https://bl.ocks.org/shirha/raw/ac03b7bdb80204080320763367014d98/)
-
 [Emoji](https://bl.ocks.org/shirha/raw/8ecae0af3666d30a7210fb1b6e7d1df7/)
+
+[Sudoku](https://bl.ocks.org/shirha/raw/f7299bf9862dd7f8c1c3b30d909ab5ff/)
+
+[Cantonese Dictionary](https://bl.ocks.org/shirha/raw/ac03b7bdb80204080320763367014d98/)
 
 [TVMCalc](https://bl.ocks.org/shirha/raw/79a30ac4a4691286b03e1abf393d3ad9/)
 
