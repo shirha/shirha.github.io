@@ -14,4 +14,7 @@
 
 [WFPB Diet](https://bl.ocks.org/shirha/raw/bf808f78666e33e8612666075e3877ed/)
 
-[Doom Collections](https://bl.ocks.org/shirha/raw/1d2a16f22b366d7f323ec32426342493/)
+[Doom Collections - before](https://bl.ocks.org/shirha/raw/1d2a16f22b366d7f323ec32426342493/)
+
+[Doom Collections - after](https://bl.ocks.org/shirha/raw/2deed2161112babb970aa4acd58161e5/)
+
