@@ -10,6 +10,8 @@
 
 [TVMCalc](https://bl.ocks.org/shirha/raw/79a30ac4a4691286b03e1abf393d3ad9/)
 
+[VPWCalc](https://bl.ocks.org/shirha/raw/a5b36440d91d35ec4f4afb423ce9b4ca/)
+
 [KR Calculator](https://bl.ocks.org/shirha/raw/da239b2c87d0b0196a1491563eebed54/)
 
 [WFPB Diet](https://bl.ocks.org/shirha/raw/bf808f78666e33e8612666075e3877ed/)
