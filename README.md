@@ -27,3 +27,5 @@
 [Category](https://bl.ocks.org/shirha/raw/972a54b89c7dcbfe053eff385ab3dcd7/)
 
 [Multibooks](https://bl.ocks.org/shirha/raw/f75cd69b13b83d12acc0e7a4d576dbb8/)
+
+[New Releases](https://bl.ocks.org/shirha/raw/8ffb0f78b08cfe343d2acb6b3ae56f57/)
