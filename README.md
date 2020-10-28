@@ -24,7 +24,7 @@
 
 [Apostles](https://bl.ocks.org/shirha/raw/272818e67d0b952bc5188731c11c0c53/)
 
-[Category](https://bl.ocks.org/shirha/raw/972a54b89c7dcbfe053eff385ab3dcd7/)
+[Apocrypha](https://bl.ocks.org/shirha/raw/972a54b89c7dcbfe053eff385ab3dcd7/)
 
 [Multibooks](https://bl.ocks.org/shirha/raw/f75cd69b13b83d12acc0e7a4d576dbb8/)
 
