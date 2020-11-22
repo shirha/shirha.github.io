@@ -20,7 +20,7 @@
 
 [15m Ringtone](https://bl.ocks.org/shirha/raw/1b5b145ed30e68aa7c6ee1039133a3ab/)
 
-[Covers](https://bl.ocks.org/shirha/raw/50e9d731ad1aeeacc1fd151385a26ed3/)
+[Covers](https://bl.ocks.org/shirha/raw/e92996647c2f2029078c734efd51bd39/)
 
 [Apostles](https://bl.ocks.org/shirha/raw/272818e67d0b952bc5188731c11c0c53/)
 
