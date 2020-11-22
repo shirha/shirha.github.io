@@ -28,4 +28,4 @@
 
 [Multibooks](https://bl.ocks.org/shirha/raw/f75cd69b13b83d12acc0e7a4d576dbb8/)
 
-[New Releases](https://bl.ocks.org/shirha/raw/8ffb0f78b08cfe343d2acb6b3ae56f57/)
+[New Releases](https://bl.ocks.org/shirha/raw/bb6c0e5046f8529c4ea1598be961ea11/)
