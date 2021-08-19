@@ -39,3 +39,5 @@
 [NMS Anomaly](https://bl.ocks.org/shirha/raw/f59a0d1fc170efb208251831e34dc8cd/)
 
 [NMS Crashed Ship](https://bl.ocks.org/shirha/raw/d03e8d8c8460a09a6229b1bbc6cb285c/)
+
+[NMS Blueprints](https://bl.ocks.org/shirha/raw/87d7efae3cb0aaaba0a61b72773f82cb/)
