@@ -1,0 +1,2488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="manifest" href="manifest.json">
+  <link rel="shortcut icon" type="image/png" href="favicon-512.png">
+  <title>NMS Blueprints</title>
+  <style>
+    body {background: #31b2a0 url("nms3.jpg") no-repeat fixed;}
+    #container {max-width: 703px;}
+    table {border:  0; border-collapse: collapse;}
+    td {width: 50%; vertical-align: text-top;}
+    #Localstore td {width: 100%}
+    span {display: block}
+    select:focus, input:focus {outline: none;}
+    button, select, option, input, #msg {border-radius: 8px; border: 1px solid #e0e0e0; background: rgba(240, 240, 240, 0.75)}
+    .d, .u, .m, select, option, input, #anal {font-size: 24px; font-weight: 600; margin-right: 3px; height: 50px;}
+    .d, .u {width:  50px; text-align: center;}
+    .m:not(#times) {width: 40px;}
+    .b, .d, .u, input {margin: 10px 10px 0 0;}
+    input {max-width: 350px;}
+    option {font-weight: 400;}
+    .b {padding: 5px; text-align: left; width: 97%;}
+    .r {font-weight: 600;}
+    .i {padding-left: 10px;}
+
+    .b:active, .m:active {background: rgba(220, 220, 220, 0.75);}
+    .u {background: rgba(240, 240, 240, 0.75) url("cloud_bw_up.png") no-repeat center;}
+    .d {background: rgba(240, 240, 240, 0.75) url("cloud_bw_down.png") no-repeat center;}
+    .u:active {background: rgba(220, 220, 220, 0.75) url("cloud_bw_up.png") no-repeat center;}
+    .d:active {background: rgba(220, 220, 220, 0.75) url("cloud_bw_down.png") no-repeat center;}
+    .c, .c:active {background: rgba(255, 255, 255, 0.75);}
+    #msg {margin:10px; font-weight: 600; padding: 5px; display: inline-block;} /* so td.width != 100% */
+    #egg {font-weight: 400; margin-left: 10px; font-style: italic; display: inline-block;}
+
+                                      * {font-size:  16px; font-family: Arial;}
+    @media (max-device-width:480px) { * {font-size:  12px; font-family: Arial;} }
+    @media (max-device-width:420px) { * {font-size:  10px; font-family: Arial;} }
+    @media (max-device-width:380px) { * {font-size:   9px; font-family: Arial;} }
+  </style>
+</head>
+<body><div id="container">
+<div>
+<select name="combo" id="combo"></select>
+<button type="button" class="m" id="menu" >=</button>
+<button type="button" class="m" id="plus" >+</button>
+<button type="button" class="m" id="times">10<sup id="power">0</sup></button>
+<button type="button" class="m" id="ones" >1</button>
+<button type="button" class="m" id="zero" >0</button>
+<button type="button" class="m" id="onoff">●</button>
+<button type="button" class="m" id="anal" >@</button>
+</div>
+<table id="Localstore">
+  <tr><td><input type="text" id="slot0"><button class="u">&nbsp;</button><button class="d">&nbsp;</button></td></tr>
+  <tr><td><input type="text" id="slot1"><button class="u">&nbsp;</button><button class="d">&nbsp;</button></td></tr>
+  <tr><td><input type="text" id="slot2"><button class="u">&nbsp;</button><button class="d">&nbsp;</button></td></tr>
+  <tr><td><input type="text" id="slot3"><button class="u">&nbsp;</button><button class="d">&nbsp;</button></td></tr>
+  <tr><td><input type="text" id="slot4"><button class="u">&nbsp;</button><button class="d">&nbsp;</button></td></tr>
+  <tr><td><input type="text" id="slot5"><button class="u">&nbsp;</button><button class="d">&nbsp;</button></td></tr>
+  <tr><td><input type="text" id="slot6"><button class="u">&nbsp;</button><button class="d">&nbsp;</button></td></tr>
+  <tr><td><input type="text" id="slot7"><button class="u">&nbsp;</button><button class="d">&nbsp;</button></td></tr>
+  <tr><td><input type="text" id="slot8"><button class="u">&nbsp;</button><button class="d">&nbsp;</button></td></tr>
+  <tr><td><div id="msg">To delete: clear entry then click upload<div></td></tr>
+</table>
+<table id="Components"><tr><td class="col"></td><td class="col"></td></tr></table>
+</div>
+<script>
+let cp, rpt,
+  db      = Object.create(null), 
+  price   = Object.create(null), 
+  include = Object.create(null), // used in displayCp() to exclude some categories
+  combo   = document.getElementById("combo"),
+  anal    = document.getElementById("anal");
+combo.addEventListener("change", () => {changeDb(combo.value)});
+anal.addEventListener("click", () => {
+  document.getElementById("anal").style.display = "none";
+  let doc = document.querySelectorAll(`#Components .col`),
+    status = document.getElementById("menu").innerHTML;
+  doc[0].innerHTML = "";
+  doc[1].innerHTML = "";
+  analyse("Stasis Device",status,doc[0]);
+  analyse("Fusion Ignitor",status,doc[1]);
+});
+document.getElementById("menu" ).addEventListener("click", toggle_menu);
+document.getElementById("plus" ).addEventListener("click", toggle_plus);
+document.getElementById("times").addEventListener("click", toggle_times);
+document.getElementById("ones" ).addEventListener("click", toggle_ones);
+document.getElementById("zero" ).addEventListener("click", toggle_zero);
+document.getElementById("onoff").addEventListener("click", toggle_onoff);
+
+addCombo("Components");
+init();
+addCombo("Localstore");
+displayDb();
+changeDb("CrashedShip");
+document.querySelector('#combo [value="CrashedShip"]').selected = true;
+console.log(price);
+console.log(db);
+
+/* create a default 'All Ones' in localstorage[slot8] */
+if (localStorage.getItem("slot8") === null) {
+  let ones = JSON.parse(JSON.stringify(db));
+  for(const cat in db){
+    for(const prop in db[cat]){
+      ones[cat][prop][0] = 1;
+  } }
+  localStorage.setItem('slot8', JSON.stringify(['All Ones', ones]));
+}
+/* add event listeners for Localstore buttons */
+let btn = document.querySelectorAll("#Localstore button");
+for (let i = 0; i < btn.length; i++) {
+  btn[i].addEventListener("click", localstore);
+}
+
+/* populate localstore input fields with descriptions */
+btn = document.querySelectorAll("#Localstore .d");
+for (let i = 0; i < btn.length; i++) {
+  let slot = window.localStorage.getItem(`slot${i}`), desc = "", data;
+  if(slot){
+    [desc, data] = JSON.parse(slot);
+  }
+  document.getElementById(`slot${i}`).value = desc;
+}
+
+/* event handler for Localstore */
+function localstore(e){
+  let text = e.target.parentElement.firstChild,
+    key = e.target.parentElement.firstChild.id,
+    op = e.target.className;
+  console.log(text,key,op);
+  if(op == "u"){
+    if(text.value.match(/^\s*$/)){
+      localStorage.removeItem(key);
+      hilite();
+    }else{
+      localStorage.setItem(key, JSON.stringify([text.value,db]));
+      hilite(key);
+    }
+  }else{
+    let desc, data = localStorage.getItem(key);
+    if(data){
+      [desc, data] = JSON.parse(data);
+      text.value = desc;
+      hilite(key);
+      db = data;
+      displayDb();
+    }
+  }
+}
+/* hilite recently accessed localstore slot */
+function hilite(slot){
+  let inp = document.querySelectorAll("#Localstore input");
+  for (let i = 0; i < inp.length; i++) {
+      inp[i].style.backgroundColor = inp[i].id == slot ? "rgba(220, 220, 220, 0.9)" : "rgba(240, 240, 240, 0.75)";
+  }
+}
+/* set increment amount to 1, 10, 100, 1000 */
+function toggle_times(){
+  let text = document.getElementById("power");
+  text.innerHTML = (parseInt(text.innerHTML) + 1) % 4;
+}
+/* toggle blueprint between summary and detail */
+function toggle_menu(){
+  let text = document.getElementById("menu"), attr;
+  [text.innerHTML, attr] = text.innerHTML == "=" ? ["≠", "none"] : ["=", "block"];
+  setDisplay(attr);
+  //if(document.getElementById("combo").value == "Components" && text.innerHTML == "≠") displayCp();
+}
+function setDisplay(attr) {
+  console.log(attr);
+  let elements = document.getElementsByClassName('i');
+  for (var i = 0; i < elements.length; i++) {
+    elements[i].style.display = attr;
+  }
+}
+/* toggle whether to add or subtract increment amount */
+function toggle_plus(){
+  let text = document.getElementById("plus");
+  text.innerHTML = text.innerHTML == "+" ? "-" : "+";
+}
+/* set all amounts to 1 in current category */
+function toggle_ones(){
+  let cat = document.getElementById("combo").value;
+  for(const prop in db[cat]){
+    db[cat][prop][0] = 1;
+    document.getElementById(prop).childNodes[0].innerHTML = `${prop},${db[cat][prop][0]}`;
+  }
+}
+/* set all amounts to 0 in current category */
+function toggle_zero(){
+  let cat = document.getElementById("combo").value;
+  for(const prop in db[cat]){
+    db[cat][prop][0] = 0;
+    document.getElementById(prop).childNodes[0].innerHTML = `${prop},${db[cat][prop][0]}`;
+  }
+}
+/* toggle whether this category is included in components view */
+function toggle_onoff(){
+  let text = document.getElementById("onoff"),
+    cat = document.getElementById("combo").value;
+  include[cat] = text.innerHTML = text.innerHTML == "○" ? "●"  : "○";
+}
+/* change category to display */
+function changeDb(cat){
+  let doc = document.querySelectorAll("table");
+  for (var i=0, len=doc.length; i<len; i++) {
+    doc[i].style.display = 'none';
+  }
+  document.getElementById(cat).style.display = 'block';
+  if(cat == "Localstore"){
+    doc = document.querySelectorAll(".m");
+    for (var i=0, len=doc.length; i<len; i++) {
+      doc[i].style.display = 'none';
+    }
+  }else if(cat == "Components"){
+    document.getElementById("menu" ).style.display = "inline-block";
+    document.getElementById("plus" ).style.display = "none";
+    document.getElementById("times").style.display = "none";
+    document.getElementById("ones" ).style.display = "none";
+    document.getElementById("zero" ).style.display = "none";
+    document.getElementById("onoff").style.display = "none";
+    document.getElementById("anal" ).style.display = "none";
+    displayCp();
+  }else{
+    document.getElementById("menu" ).style.display = "inline-block";
+    document.getElementById("plus" ).style.display = "inline-block";
+    document.getElementById("times").style.display = "inline-block";
+    document.getElementById("ones" ).style.display = "inline-block";
+    document.getElementById("zero" ).style.display = "inline-block";
+    document.getElementById("onoff").style.display = "inline-block";
+    document.getElementById("onoff").innerHTML = include[cat];
+    document.getElementById("anal" ).style.display = "none";
+  }
+}
+/* populate all categories with blueprints */
+function displayDb(){
+  let status = document.getElementById("menu").innerHTML, element;
+  for(const cat in db){
+    element = document.getElementById(cat);
+    if(element) element.remove();
+    let tbl = document.createElement("table");
+    tbl.setAttribute("id", cat);
+    tbl.innerHTML = `<tr><td class="col"></td><td class="col"></td></tr>`;
+    document.getElementById("container").appendChild(tbl);
+    document.getElementById(cat).style.display = "none";
+    let doc = document.querySelectorAll(`#${cat} .col`);
+
+    for(const prop in db[cat]){
+      element = document.createElement("button");
+      element.setAttribute("id", prop);
+      element.setAttribute("class", "b");
+      createSpan(element, "r", "=", `${prop},${db[cat][prop][0]}`);
+      db[cat][prop].forEach((e, i) => {
+        if(i > 0){
+          createSpan(element, "i", status, e);
+        }
+      });
+      doc[1].appendChild(element);
+      //console.log(prop,element);
+      document.getElementById(prop).addEventListener("click", accum);
+    }
+    while(doc[0].childNodes.length < doc[1].childNodes.length){
+      doc[0].appendChild(doc[1].removeChild(doc[1].firstChild));
+    }
+  }
+}
+/* calculate component view */
+function displayCp(){
+  cp = Object.create(null), rpt = ""; // global
+  let doc = document.querySelectorAll(`#Components .col`),
+    status = document.getElementById("menu").innerHTML,
+    i = 0, max = 0, cnt = 0, cost = 0, num, element, key, value;
+  doc[0].innerHTML = "";
+  doc[1].innerHTML = "";
+
+  for(const cat in db){
+    for(const prop in db[cat]){
+      db[cat][prop].forEach((e, i) => {
+        if(i == 0){
+          num = e;
+        } else {
+          if(num > 0 && include[cat] == "●"){
+            [key, value] = e.split(/,/);
+            if(key != "^"){
+              if(!(key in cp)){
+                max += 2.6;
+                cp[key] = Object.create(null);
+                cp[key].num = 0;
+                cp[key].grp = [];
+              }
+              if(status == "="){
+                max += 1;
+              }
+            //cp[key].num += num * value;
+              cp[key].num += ( !prop.match(/^\(S\)/) && key.match(/^_/) ? 1 : num ) * value;
+              cp[key].grp.push(`x${num} ${prop},${value}`);
+            }
+            //console.log("prop=",prop,",key=",key,",value=",value,",num=",num);
+          }
+        }
+      })
+    }
+  }
+  console.log(cp);
+  console.log('max=',max,'status=',status);
+
+  Object.keys(cp).sort().forEach((prop) => {
+    if(cnt >= max / 2){
+      i = 1;
+    }
+    element = document.createElement("button");
+    element.setAttribute("class", "b c");
+    createSpan(element, "r", "=", `${prop},${cp[prop].num} @${price[prop]}`);
+    cost += cp[prop].num * price[prop];
+    cnt += 2.6;
+    cp[prop].grp.forEach((text, i) =>{
+      createSpan(element, "i", status, text);
+      if(status == "="){
+        cnt += 1;
+      }
+    });
+    doc[i].appendChild(element);
+  });
+  element = document.createElement("button");
+  element.setAttribute("class", "b c");
+  createSpan(element, "r", "=", `cost: ${cost} ${cost == 0 ? 
+    '<span id="egg">- See easter egg with "@"</span>' : ""}`);
+  doc[i].appendChild(element);
+  console.log("cnt=",cnt);
+
+  if(cost == 0){
+    document.getElementById("anal").style.display = "inline-block";
+  }
+}
+function analyse(recipe,status,doc){
+  let ref = db.Valuables[recipe];
+  for(let i = 1; i < ref.length; i++){
+    let [data,cnt] = ref[i].split(/,/);
+    if(data in db.Valuables){
+      analyse(data,status,doc);
+    }
+  }
+  //console.log(JSON.stringify([recipe,ref]));
+  let element = document.createElement("button");
+  element.setAttribute("class", "b c");
+  createSpan(element, "r", "=", `${recipe},${recipe == "Glass" ? 5 : 1}`);
+  ref.forEach((text, i) =>{
+    if(i > 0) createSpan(element, "i", status, text);
+  });
+  doc.appendChild(element);
+}
+
+function createSpan(element, c, status, text){
+  rpt += c == "r" ? `\n${text}\n` : `  ${text}\n`;
+  //console.log(c,status,text);
+  let span = document.createElement("span");
+  span.setAttribute("class", c);
+  span.style.display = status == "=" ? "block" : "none";;
+  span.innerHTML = text;
+  element.appendChild(span);
+}
+/* accumulator used when a blueprint is clicked */
+function accum(e){
+  let text = document.getElementById("plus").innerHTML,
+    power = parseInt(document.getElementById("power").innerHTML),
+    element = e.target.nodeName == "SPAN" ? e.target.parentNode : e.target,
+    cat = element.parentElement.parentElement.parentElement.parentElement.id,
+    num = db[cat][element.id][0];
+    //console.log(num, power,10**power);
+  if(text == "+"){
+      db[cat][element.id][0] = Math.min(db[cat][element.id][0] + 10 ** power, 10000);
+  } else {
+      db[cat][element.id][0] = Math.max(db[cat][element.id][0] - 10 ** power, 0);
+  }
+  element.childNodes[0].innerHTML = `${element.id},${db[cat][element.id][0]}`;
+  //console.log(cat,element.id,db[cat][element.id]);
+}
+
+/* used by init() to populate select options */
+function addCombo(textb) {
+  var combo = document.getElementById("combo"),
+    option = document.createElement("option");
+  option.text = textb;
+  option.value = textb;
+  combo.add(option, null);
+  include[textb] = "●";
+}
+/* initialise 'price' and 'db' with bluprints */
+function init(){
+  let cat, key, value;
+`Acid,188000
+Activated Copper,245
+Amino Chamber,12300
+Ammonia,62
+Antimatter,5233
+Antimatter Housing,6500
+Aronium,25000
+Cactus Flesh,28
+Cadmium,234
+Carbon,12
+Carbon Nanotubes,500
+Condensed Carbon,24
+Chlorine,602
+Chromatic Metal,245
+Circuit Board,916250
+Cobalt,198
+Copper,121
+Creature Pellets,20
+Cryo-Pump,1500000
+Cryogenic Chamber,3800000
+Crystal Sulphide,7410
+Cyto-Phosphate,201
+Deuterium,34
+Di-hydrogen,34
+Di-hydrogen Jelly,200
+Dioxite,62
+Dirty Bronze,25000
+Emeril,348
+Enriched Carbon,50000
+Faecium,30
+Ferrite Dust,14
+Frost Crystal,12
+Fungal Mould,16
+Fusion Accelerant,1500000
+Gamma Root,16
+Geodesite,150000
+Glass,200
+Gold,353
+Grantine,25000
+Gravitino Ball,40024
+Heat Capacitor,180000
+Hermetic Seal,800
+Herox,25000
+Hot Ice,320000
+Hydraulic Wiring,3600
+Indium,464
+Ion Battery,200
+Ionised Cobalt,401
+Iridesite,150000
+Korvax Convergence Cube,13063
+Larval Core,69875
+Lemmium,25000
+Life Support Gel,200
+Liquid Explosive,800500
+Living Glass,566000
+Living Pearl,4800
+Lubricant,110000
+Magnetic Resonator,6150
+Magnetised Ferrite,82
+Mango-Gold,25000
+Metal Plating,800
+Microprocessor,2000
+Mordite,40
+_Nanites,0
+NipNip Buds,17776
+Nitrogen,20
+Nitrogen Salt,50000
+Organic Catalyst,320000
+Oxygen,34
+Paraffinium,62
+Phosphorus,62
+Platinum,505
+Poly Fibre,130000
+Portable Reactor,4200000
+Projectile Ammunition,1
+Pugneum,138
+Pure Ferrite,28
+Pyrite,62
+Quad Servo,20000
+Quantum Computer,4200
+Quantum Processor,4400000
+Radon,20
+Salt,299
+_Salvaged Data,0
+_Salvaged Frigate Mod,0
+Semiconductor,320000
+Silicate Powder,2
+Silver,186
+Sodium,41
+Sodium Nitrate,82
+Solar Mirror,6150
+Solanium,
+Star Bulb,32
+Storm Crystal,129150
+Sulphurine,20
+Superconductor,1500000
+Thermic Condensate,50000
+Tritium,6
+Tritium Hypercluster,3280
+Unstable Gel,50000
+Unstable Plasma,5750
+Uranium,62
+Walker Brain,35000
+Warp Cell,46750
+Warp Hypercore,46750
+Wiring Loom,25000`
+.split(/\n/).forEach((e) => {
+  const [key, value] = e.split(/,/);
+  price[key] = value;
+});
+
+`Cartographers
+  (R)Advanced Launch System
+    ^,Autodiagnostics 2
+    Quantum Computer,1
+    Storm Crystal,3
+
+  (R)Waveform Engine
+    ^,Autodiagnostics 3
+    Magnetic Resonator,1
+    Crystal Sulphide,3
+
+  (R)Pressurization Capsule
+    ^,Autodiagnostics 4
+    Condensed Carbon,63
+    Herox,2
+
+  (R)Frameshift Catapult
+    ^,Autodiagnostics 5
+    Ionised Cobalt,63
+    Larval Core,3
+    Gravitino Ball,3
+
+  Herox x2
+    Ammonia,60
+    Ionised Cobalt,60
+    Gold,20
+
+CrashedShip
+  (R)Deflector Shield
+    Chromatic Metal,50
+    Sodium Nitrate,13
+
+  (R)Efficient Thrusters
+    Tritium,100
+    Wiring Loom,2
+    Di-hydrogen Jelly,1
+
+  (R)Emergency Warp Unit
+    Warp Cell,1
+    Gold,110
+    Microprocessor,2
+
+  (R)Hyperdrive
+    Chromatic Metal,63
+    Microprocessor,3
+
+  (R)Launch Sys Recharger
+    Antimatter,3
+    Magnetic Resonator,1
+    Wiring Loom,1
+
+  (R)Launch Thrusters
+    Pure Ferrite,50
+    Di-hydrogen Jelly,1
+
+  (R)Photon Cannon
+    Pure Ferrite,50
+    Sodium Nitrate,30
+
+  (R)Pulse Engine
+    Hermetic Seal,1
+    Metal Plating,1
+
+  Burnt-Out Compressor
+    Wiring Loom,2
+    Antimatter,3
+
+  Containment Failure
+    Magnetised Ferrite,50
+    Chromatic Metal,60
+    Gold,45
+
+  Corroded Tanks
+    Activated Copper,75
+
+  Damaged Gears
+    Chromatic Metal,150
+    Wiring Loom,3
+
+  Exploded Panel
+    Pure Ferrite,125
+    Gold,75
+
+  Hull Fracture
+    Chromatic Metal,100
+
+  Hydraulics Damage
+    Oxygen,50
+    Dioxite,40
+
+  Melted Fuel Cell
+    Pyrite,60
+    Phosphorus,75
+    Metal Plating,3
+
+  Radiation Leak
+    Paraffinium,150
+    Pugneum,10
+
+  Rusted Circuits
+    Magnetised Ferrite,250
+    Chlorine,25
+
+  Scorched Plating
+    Chromatic Metal,75
+    Pugneum,25
+    Platinum,25
+
+  Shattered Bulwark
+    Platinum,50
+
+Exosuit
+  Haz-Mat Guantlets
+    _Nanites,80
+    Chromatic Metal,50
+    Sodium Nitrate,20
+
+  Personal Refiner
+    ^,Haz-Mat Guantlets
+    _Nanites,360
+    Oxygen,150
+    Chromatic Metal,100
+
+  Hazard Protection
+    Ferrite Dust,100
+
+  Coolant Network
+    _Nanites,160
+    Phosphorus,150
+    Silver,60
+    Copper,75
+
+  Thermic Layer
+    _Nanites,160
+    Dioxite,150
+    Silver,60
+    Copper,75
+
+  Toxin Suppressor
+    _Nanites,160
+    Ammonia,150
+    Silver,60
+    Copper,75
+
+  Radiation Deflector
+    _Nanites,160
+    Uranium,150
+    Silver,60
+    Copper,75
+
+  Aeration Membrane
+    _Nanites,120
+    Oxygen,150
+    Silver,60
+    Chromatic Metal,75
+
+  Shield Lattice
+    _Nanites,120
+    Sodium Nitrate,60
+    Antimatter,1
+
+  Life Support
+    Ferrite Dust,100
+
+  Oxygen Recycler
+    Oxygen,60
+
+  Oxygen Rerouter
+    _Nanites,240
+    Chromatic Metal,100
+    Quantum Computer,1
+    Crystal Sulphide,6
+
+  Jetpack
+    Ferrite Dust,100
+
+  Neural Stimulator
+    _Nanites,90
+    Chromatic Metal,100
+    Condensed Carbon,100
+
+  Airburst Engine
+    ^,Neural Stimulator
+    _Nanites,460
+    Chromatic Metal,100
+    Phosphorus,150
+    Oxygen,150
+
+  Rocket Boot
+    _Nanites,460
+    Tritium,100
+    Hydraulic Wiring,1
+
+  Efficient Water Jets
+    _Nanites,350
+    Chromatic Metal,100
+    Oxygen,100
+    Living Pearl,6
+
+  Simple Translator
+    _Nanites,90
+    Wiring Loom,1
+
+  Superior Translator
+    ^,Simple Translator
+    _Nanites,310
+    Wiring Loom,2
+    Quantum Computer,1
+    Chromatic Metal,50
+
+  Advanced Translator
+    ^,Superior Translator
+    _Nanites,580
+    Wiring Loom,3
+    Korvax Convergence Cube,2
+    Platinum,50
+
+  (S)Cold Protection
+    _Nanites,580
+  (S)Hot Protection
+    _Nanites,580
+  (S)Tox Protection
+    _Nanites,580
+  (S)Rad  Protection
+    _Nanites,580
+  (S)Underwater
+    _Nanites,580
+  (S)Shield
+    _Nanites,580
+  (S)Movement
+    _Nanites,580
+
+Starship
+  Teleport Receiver
+    _Nanites,150
+    Antimatter,1
+    Wiring Loom,3
+
+  Conflict Scanner
+    _Nanites,150
+    ^,Teleport Receiver
+    Walker Brain,1
+    Wiring Loom,1
+
+  Economy Scanner
+    _Nanites,150
+    ^,Teleport Receiver
+    Microprocessor,5
+    Wiring Loom,1
+
+  Pulse Engine
+    Hermetic Seal,1
+    Metal Plating,1
+    Wiring Loom,1
+
+  Instability Drive
+    _Nanites,460
+    Warp Cell,1
+    Tritium Hypercluster,3
+    Chromatic Metal,100
+
+  Sub-light Amplifier
+    _Nanites,460
+    Magnetic Resonator,3
+    Platinum,100
+    Tritium,200
+
+  Hyperdrive
+    Chromatic Metal,120
+    Microprocessor,5
+
+  Emergency Warp Unit
+    _Nanites,80
+    Warp Cell,1
+    Gold,220
+    Microprocessor,4
+
+  Cadmium Drive
+    _Nanites,80
+    Chromatic Metal,250
+    Wiring Loom,1
+
+  Emeril Drive
+    ^,Cadmium Drive
+    _Nanites,120
+    Cadmium,250
+    Wiring Loom,3
+
+  Indium Drive
+    ^,Emeril Drive
+    _Nanites,200
+    Emeril,250
+    Wiring Loom,5
+
+  Launch Thrusters
+    Pure Ferrite,100
+    Di-hydrogen Jelly,1
+
+  Eff Launch Thrusters
+    _Nanites,120
+    Di-hydrogen Jelly,1
+    Tritium,100
+    Wiring Loom,2
+
+  Launch Sys Recharger
+    ^,Eff Launch Thrusters
+    _Nanites,460
+    Antimatter,5
+    Magnetic Resonator,2
+    Wiring Loom,2
+
+  Deflector Shield
+    Chromatic Metal,100
+    Sodium Nitrate,25
+
+  Ablative Armour
+    _Nanites,85
+    Wiring Loom,1
+    Gold,100
+    Sodium Nitrate,50
+
+  Photon Cannon
+    Pure Ferrite,100
+    Sodium Nitrate,60
+
+  Nonlinear Optics
+    _Nanites,75
+    Hermetic Seal,2
+    Wiring Loom,1
+    Tritium,100
+
+  Rocket Launcher
+    Copper,200
+    Condensed Carbon,100
+
+  Large Rocket Tubes
+    _Nanites,50
+    Wiring Loom,2
+    Unstable Plasma,4
+
+  Phase Beam
+    _Nanites,150
+    Tritium,100
+    Wiring Loom,1
+
+  Fourier De-Limiter
+    _Nanites,120
+    ^,Phase Beam
+    Solar Mirror,1
+    Wiring Loom,2
+
+  Positron Ejector
+    _Nanites,150
+    Uranium,200
+    Wiring Loom,2
+
+  Fragment Supercharger
+    ^,Positron Ejector
+    _Nanites,120
+    Magnetic Resonator,3
+    Wiring Loom,2
+
+  Infra-Knife Accelerator
+    _Nanites,150
+    Phosphorus,200
+    Wiring Loom,2
+
+  Q-Resonator
+    ^,Infra-Knife Accelerator
+    _Nanites,120
+    Hydraulic Wiring,3
+    Quantum Computer,1
+    Wiring Loom,2
+
+  Cyclotron Ballista
+    _Nanites,150
+    Dioxite,200
+    Wiring Loom,2
+
+  Dyson Pump
+    ^,Cyclotron Ballista
+    _Nanites,120
+    Amino Chamber,3
+    Wiring Loom,2
+
+  (S)Hyperdrive
+    _Nanites,580
+  (S)Pulse Engine
+    _Nanites,580
+  (S)Launch Thruster
+    _Nanites,580
+  (S)Photon Cannon
+    _Nanites,580
+  (S)Starship Shield
+    _Nanites,580
+
+Multitool
+  Mining Beam
+    Ferrite Dust,60
+
+  Terrain Manipulator
+    Carbon Nanotubes,2
+    Di-hydrogen Jelly,1
+
+  Advanced Mining Beam
+    Carbon Nanotubes,1
+    Hermetic Seal,1
+    Wiring Loom,2
+
+  Optical Drill
+    _Nanites,460
+    Quantum Computer,3
+    Solar Mirror,3
+    Wiring Loom,5
+
+  Waveform Recycler
+    _Nanites,120
+    Magnetised Ferrite,100
+    Ion Battery,1
+
+  Survey Device
+    ^,Waveform Recycler
+    _Nanites,320
+    Magnetic Resonator,3
+    Quantum Computer,1
+    Wiring Loom,2
+
+  Personal Forcefield
+    Ion Battery,2
+    Wiring Loom,1
+
+  Combat Scope
+    _Nanites,80
+    Ion Battery,2
+    Wiring Loom,1
+
+  Boltcaster
+    Chromatic Metal,100
+    Carbon Nanotubes,3
+
+  Barrel Ioniser
+    _Nanites,90
+    Glass,4
+    Wiring Loom,1
+
+  Boltcaster Ricochet
+    ^,Barrel Ioniser
+    _Nanites,90
+    Glass,4
+    Wiring Loom,1
+
+  Plasma Launcher
+    _Nanites,150
+    Amino Chamber,1
+    Hermetic Seal,1
+    Wiring Loom,1
+
+  Geology Cannon
+    ^,Plasma Launcher
+    _Nanites,150
+    Magnetic Resonator,1
+    Wiring Loom,1
+
+  Blaze Javelin
+    _Nanites,250
+    Chromatic Metal,200
+    Condensed Carbon,150
+    Wiring Loom,1
+
+  Mass Accelerator
+    ^,Blaze Javelin
+    _Nanites,180
+    Solar Mirror,1
+    Wiring Loom,1
+
+  Scatter Blaster
+    _Nanites,250
+    Pugneum,200
+    Wiring Loom,1
+
+  Shell Greaser
+    ^,Scatter Blaster
+    _Nanites,180
+    Magnetic Resonator,1
+    Wiring Loom,1
+
+  Pulse Spitter
+    _Nanites,250
+    Deuterium,200
+    Wiring Loom,1
+
+  Amplified Cartridges
+    ^,Pulse Spitter
+    _Nanites,180
+    Solar Mirror,1
+    Wiring Loom,1
+
+  Pulse Spitter Ricochet
+    ^,Amplified Cartridges
+    _Nanites,180
+    Solar Mirror,1
+    Quantum Computer,1
+    Wiring Loom,1
+
+  (S)Scanner
+    _Nanites,580
+  (S)Mining Beam
+    _Nanites,580
+  (S)Boltcaster
+    _Nanites,580
+  (S)Plasma Launcher
+    _Nanites,580
+  (S)Blaze Javelin
+    _Nanites,580
+  (S)Scatter Blaster
+    _Nanites,580
+  (S)Pulse Spitter
+    _Nanites,580
+
+Recipes
+  Antimatter
+    Oxygen,30
+    Ferrite Dust,50
+    
+  Antimatter Housing
+    Chromatic Metal,25
+    Cpndensed Carbon,20
+    
+  Life Support Gel
+    Di-hydrogen Jelly,1
+    Carbon,20
+
+  Di-hydrogen Jelly
+    Di-hydrogen,40
+    
+  Carbon Nanotubes
+    Carbon,50
+
+  Hydraulic Wiring
+    _Nanites,250
+    Carbon Nanotubes,2
+    Salt,20
+    Di-hydrogen,40
+
+  Microprocessor
+    _Nanites,250
+    Chromatic Metal,40
+    Carbon Nanotubes,1
+
+  Quantum Computer
+    ^,Microprocessor
+    _Nanites,250
+    Microprocessor,1
+    Antimatter,1
+    Chromatic Metal,25
+
+  Hermetic Seal
+    Condensed Carbon,30
+
+  Amino Chamber
+    _Nanites,250
+    Metal Plating,1
+    Chlorine,20
+    Condensed Carbon,25
+
+  Metal Plating
+    Ferrite Dust,50
+
+  Magnetic Resonator
+    _Nanites,250
+    Magnetised Ferrite,40
+    Ionised Cobalt,40
+
+  Solar Mirror
+    _Nanites,250
+    Gold,40
+    Silver,30
+    Chromatic Metal,25
+
+  Ion Battery
+    Cobalt,10
+    Ferrite Dust,5
+
+  Starshield Battery
+    _Nanites,250
+    Tritium,50
+    Gold,20
+
+  Starship Launch Fuel
+    Di-hydrogen,40
+    Metal Plating,1
+
+  Hydrothermal Fuel Cell
+    _Nanites,250
+    Salt,40
+    Cyto-Phosphate,40
+    Carbon,40
+
+  Unstable Plasma
+    _Nanites,250
+    Oxygen,50
+    Metal Plating,1
+
+  Warp Cell
+    Antimatter Housing,1
+    Antimatter,1
+
+  Atlaspass v1
+    _Nanites,250
+    Copper,200
+    Microprocessor,1
+
+  Atlaspass v2
+    ^,Atlaspass v1
+    _Nanites,250
+    Cadmium,200
+    Microprocessor,1
+
+  Atlaspass v3
+    ^,Atlaspass v2
+    _Nanites,250
+    Emeril,200
+    Microprocessor,1
+
+  Warp Hypercore
+    ^,Atlaspass v2
+    _Nanites,250
+    Antimatter,1
+    Storm Crystal,1
+
+Valuables
+  Acid
+    Mordite,25
+    Fungal Mould,600
+
+  Lubricant
+    Faecium,50
+    Gamma Root,400
+
+  Unstable Gel
+    Cactus Flesh,200
+
+  Liquid Explosive
+    Acid,1
+    Unstable Gel,1
+
+  Glass
+    Frost Crystal,40
+
+  Living Glass
+    Lubricant,1
+    Glass,5
+
+  Poly Fibre
+    Cactus Flesh,100
+    Star Bulb,200
+
+  Heat Capacitor
+    Frost Crystal,100
+    Solanium,200
+
+  Circuit Board
+    Heat Capacitor,1
+    Poly Fibre,1
+
+  Enriched Carbon
+    Radon,250
+    Condensed Carbon,50
+
+  Organic Catalyst
+    Thermic Condensate,1
+    Enriched Carbon,1
+
+  Fusion Accelerant
+    Organic Catalyst,1
+    Nitrogen Salt,1
+
+  Nitrogen Salt
+    Nitrogen,250
+    Condensed Carbon,50
+
+  Semiconductor
+    Thermic Condensate,1
+    Nitrogen Salt,1
+
+  Superconductor
+    Semiconductor,1
+    Enriched Carbon,1
+
+  Hot Ice
+    Enriched Carbon,1
+    Nitrogen Salt,1
+
+  Cryo-Pump
+    Hot Ice,1
+    Thermic Condensate,1
+
+  Thermic Condensate
+    Sulphurine,250
+    Condensed Carbon,50
+
+  Aronium
+    Paraffinium,50
+    Ionised Cobalt,50
+
+  Dirty Bronze
+    Pyrite,50
+    Pure Ferrite,100
+
+  Herox
+    Ammonia,50
+    Ionised Cobalt,50
+
+  Lemmium
+    Uranium,50
+    Pure Ferrite,100
+
+  Mango-Gold
+    Phosphorus,50
+    Ionised Cobalt,50
+
+  Iridesite
+    Aronium,1
+    Mango-Gold,1
+    Grantine,1
+
+  Grantine
+    Dioxite,50
+    Ionised Cobalt,50
+
+  Geodesite
+    Dirty Bronze,1
+    Herox,1
+    Lemmium,1
+
+  Portable Reactor
+    Liquid Explosive,1
+    Fusion Accelerant,1
+
+  Quantum Processor
+    Circuit Board,1
+    Superconductor,1
+
+  Fusion Ignitor
+    Quantum Processor,1
+    Portable Reactor,1
+    Geodesite,1
+
+  Cryogenic Chamber
+    Living Glass,1
+    Cryo-Pump,1
+
+  Stasis Device
+    Quantum Processor,1
+    Cryogenic Chamber,1
+    Iridesite,1
+
+Technology
+  Base Computer
+    Chromatic Metal,30
+
+  Save Point
+    Metal Plating,2
+    Di-hydrogen Jelly,1
+
+  Save Beacon
+    _Salvaged Data,1
+    Metal Plating,2
+    Sodium Nitrate,15
+
+  Galactic Trade Terminal
+    _Salvaged Data,10
+    Magnetised Ferrite,25
+    Microprocessor,3
+
+  Message Module
+    _Salvaged Data,1
+    Metal Plating,1
+    Carbon Nanotubes,1
+
+  Communications Station
+    ^,Message Module
+    _Salvaged Data,1
+    Pure Ferrite,20
+
+  Health Station
+    _Salvaged Data,5
+    Metal Plating,1
+    Ionised Cobalt,20
+    Uranium,50
+
+  Hazard Protection Unit
+    ^,Health Station
+    _Salvaged Data,3
+    Metal Plating,1
+    Ionised Cobalt,20
+    Phosphorus,50
+
+  Base Teleport Module
+    _Salvaged Data,2
+    Metal Plating,4
+    Carbon Nanotubes,2
+    Sodium,40
+
+  Storage Container 0
+    _Salvaged Data,5
+    Magnetised Ferrite,35
+    Sodium,20
+
+  Appearance Modifier
+    _Salvaged Data,10
+    Ferrite Dust,20
+
+  Landing Pad
+    _Salvaged Data,10
+    Metal Plating,10
+    Ion Battery,2
+    Microprocessor,2
+
+  Short-Range Teleporter
+    ^,Landing Pad
+    _Salvaged Data,10
+    Metal Plating,2
+    Chromatic Metal,40
+    Gold,30
+
+  Teleport Cable
+    ^,Landing Pad
+    _Salvaged Data,0
+
+  Portalble Refiner
+    Metal Plating,1
+    Oxygen,30
+
+  Signal Booster
+    _Salvaged Data,1
+    Metal Plating,1
+    Carbon Nanotubes,1
+    Sodium,15
+
+  Medium Refiner
+    _Salvaged Data,10
+    Magnetised Ferrite,100
+    Di-hydrogen Jelly,5
+
+  Large Refiner
+    ^,Medium Refiner
+    _Salvaged Data,10
+    Chromatic Metal,200
+    Sodium Nitrate,100
+    Microprocessor,5
+
+  Antimatter Reactor
+    ^,Medium Refiner
+    _Salvaged Data,20
+    Storm Crystal,5
+    Antimatter,2
+    Metal Plating,2
+
+  Nutrient Processor
+    _Salvaged Data,10
+    Metal Plating,2
+    Hermetic Seal,1
+    Sodium,25
+
+  Livestock Unit
+    _Salvaged Data,10
+    Metal Plating,4
+    Poly Fibre,2
+    Faecium,50
+
+  Automated Feeder
+    _Salvaged Data,10
+    Metal Plating,4
+    Amino Chamber,1
+    Creature Pellets,10
+
+  Light Box
+    _Salvaged Data,1
+    Sodium,5
+
+  Light Floor
+    _Salvaged Data,10
+    Sodium,5
+
+  Noise Box
+    _Salvaged Data,10
+    Metal Plating,2
+    Ion Battery,2
+    Phosphorus,40
+
+  ByteBeat Cable
+    ^,Noise Box
+    _Salvaged Data,0
+
+  ByteBeat Device
+    ^,Noise Box
+    _Salvaged Data,10
+    Metal Plating,3
+    Gold,50
+    Antimatter,1
+
+  ByteBeat Switch
+    ^,Noise Box
+    _Salvaged Data,2
+    Ferrite Dust,25
+    Ionised Cobalt,15
+
+  Sphere Creator
+    _Salvaged Data,10
+    Metal Plating,5
+    Ion Battery,4
+    Paraffinium,100
+
+Industrial
+  Electrical Wiring
+    _Salvaged Data,0
+
+  Biofuel Reactor
+    _Salvaged Data,1
+    Metal Plating,1
+    Oxygen,25
+
+  Electrical Cloaking Device
+    _Salvaged Data,1
+    Metal Plating,1
+    Gold,30
+    Chromatic Metal,40
+
+  Solar Panel
+    _Salvaged Data,8
+    Metal Plating,1
+    Gold,30
+    Chromatic Metal,50
+
+  Battery
+    _Salvaged Data,3
+    Magnetised Ferrite,60
+    Condensed Carbon,100
+
+  Electromagnetic Generator
+    ^,Solar Panel
+    _Salvaged Data,10
+    Metal Plating,2
+    Magnetised Ferrite,60
+    Chromatic Metal,75
+
+  Mineral Extractor
+    _Salvaged Data,10
+    Metal Plating,5
+    Chromatic Metal,100
+
+  Gas Extractor
+    ^,Mineral Extractor
+    _Salvaged Data,10
+    Metal Plating,5
+    Chromatic Metal,100
+
+  Supply Depot
+    ^,Mineral Extractor
+    _Salvaged Data,10
+    Metal Plating,10
+
+  Supply Pipe
+    ^,Mineral Extractor
+    _Salvaged Data,1
+    Ferrite Dust,25
+    Carbon,10
+
+  Wall Switch
+    _Salvaged Data,1
+    Ferrite Dust,25
+    Ionised Cobalt,25
+
+  Floor Switch
+    _Salvaged Data,1
+    Ferrite Dust,25
+    Ionised Cobalt,25
+
+  Proximity Switch
+    _Salvaged Data,1
+    Carbon,20
+
+  Button
+    _Salvaged Data,1
+    Carbon,20
+
+  Power Inverter
+    _Salvaged Data,1
+    Ferrite Dust,25
+    Ionised Cobalt,15
+
+  Auto Switch
+    _Salvaged Data,1
+    Ferrite Dust,25
+    Ionised Cobalt,15
+
+Wooden
+  Wooden Wall
+    Carbon,25
+
+  Wooden Floor Panel
+    Carbon,10
+
+  Wooden-Framed Glass Panel
+    _Salvaged Data,3
+    Carbon,10
+
+  Wooden Ramp
+    _Salvaged Data,1
+    Carbon,25
+    Pure Ferrite,10
+
+  Wooden Half Ramp
+    ^,Wooden Ramp
+    _Salvaged Data,1
+    Carbon,15
+    Pure Ferrite,5
+
+  Small Wooden Panel
+    _Salvaged Data,1
+    Carbon,5
+
+  Wooden Triangle
+    _Salvaged Data,1
+    Carbon,10
+
+  Small Wooden Triangle
+    ^,Wooden Triangle
+    _Salvaged Data,1
+    Carbon,5
+
+  Thin Wooden Wall
+    _Salvaged Data,1
+    Carbon,10
+
+  Sloping Wooden Panel
+    ^,Thin Wooden Wall
+    _Salvaged Data,1
+    Carbon,10
+
+  Small Wooden Wall
+    ^,Thin Wooden Wall
+    _Salvaged Data,1
+    Carbon,10
+
+  Short Wooden Wall
+    ^,Small Wooden Wall
+    _Salvaged Data,1
+    Carbon,10
+
+  Wooden Door Frame
+    Carbon,25
+
+  Wooden Window Panel
+    _Salvaged Data,1
+    Carbon,25
+    Glass,1
+
+  Wooden Frontage
+    ^,Wooden Window Panel
+    _Salvaged Data,2
+    Carbon,25
+    Pure Ferrite,10
+
+  Wooden Doorway
+    _Salvaged Data,2
+    Carbon,10
+
+  Wooden Power Door
+    _Salvaged Data,2
+    Carbon,25
+
+  Wooden Roof
+    Carbon,10
+    Ferrite Dust,10
+
+  Wooden Roof Panel
+    _Salvaged Data,1
+    Carbon,10
+    Ferrite Dust,10
+
+  Wooden Roof Corner
+    _Salvaged Data,1
+    Carbon,10
+    Ferrite Dust,10
+
+  Wooden Inner Roof Corner
+    ^,Wooden Roof Corner
+    _Salvaged Data,1
+    Carbon,10
+    Ferrite Dust,10
+
+  Wooden Arch
+    _Salvaged Data,1
+    Carbon,25
+
+  Wooden Half Arch
+    ^,Wooden Arch
+    _Salvaged Data,1
+    Carbon,10
+
+Metal
+  Metal Wall
+    _Salvaged Data,1
+    Ferrite Dust,25
+
+  Metal Floor Panel
+    _Salvaged Data,1
+    Ferrite Dust,10
+
+  Metal-Framed Glass Panel
+    _Salvaged Data,3
+    Ferrite Dust,10
+
+  Metal Ramp
+    _Salvaged Data,1
+    Ferrite Dust,25
+    Pure Ferrite,10
+
+  Metal Half Ramp
+    ^,Metal Ramp
+    _Salvaged Data,1
+    Ferrite Dust,15
+    Pure Ferrite,5
+
+  Small Metal Panel
+    _Salvaged Data,1
+    Ferrite Dust,5
+
+  Metal Triangle
+    _Salvaged Data,1
+    Ferrite Dust,10
+
+  Small Metal Triangle
+    ^,Metal Triangle
+    _Salvaged Data,1
+    Ferrite Dust,5
+
+  Thin Metal Wall
+    _Salvaged Data,1
+    Carbon,10
+
+  Sloping Metal Panel
+    ^,Thin Metal Wall
+    _Salvaged Data,1
+    Ferrite Dust,10
+
+  Small Metal Wall
+    ^,Thin Metal Wall
+    _Salvaged Data,1
+    Ferrite Dust,10
+
+  Short Metal Wall
+    ^,Small Metal Wall
+    _Salvaged Data,1
+    Carbon,10
+
+  Metal Door Frame
+    _Salvaged Data,2
+    Ferrite Dust,25
+
+  Metal Window Panel
+    _Salvaged Data,2
+    Ferrite Dust,25
+    Glass,1
+
+  Metal Frontage
+    ^,Metal Window Panel
+    _Salvaged Data,3
+    Ferrite Dust,25
+    Pure Ferrite,10
+
+  Metal Doorway
+    ^,Metal Door Frame
+    _Salvaged Data,1
+    Carbon,10
+
+  Metal Power Door
+    ^,Metal Door Frame
+    _Salvaged Data,2
+    Carbon,25
+
+  Metal Roof
+    _Salvaged Data,2
+    Ferrite Dust,10
+
+  Metal Roof Panel
+    _Salvaged Data,1
+    Carbon,10
+    Ferrite Dust,10
+
+  Metal Roof Corner
+    _Salvaged Data,1
+    Carbon,10
+    Ferrite Dust,10
+
+  Metal Inner Roof Corner
+    ^,Metal Roof Corner
+    _Salvaged Data,1
+    Carbon,10
+    Ferrite Dust,10
+
+  Metal Arch
+    _Salvaged Data,1
+    Ferrite Dust,25
+
+  Metal Half Arch
+    ^,Metal Arch
+    _Salvaged Data,1
+    Ferrite Dust,10
+
+Concrete
+  Concrete Wall
+    _Salvaged Data,1
+    Silicate Powder,25
+
+  Concrete Floor Panel
+    _Salvaged Data,1
+    Silicate Powder,10
+
+  Concrete-Framed Glass Panel
+    _Salvaged Data,3
+    Silicate Powder,10
+
+  Concrete Ramp
+    _Salvaged Data,1
+    Silicate Powder,25
+    Pure Ferrite,10
+
+  Concrete Half Ramp
+    ^,Concrete Ramp
+    _Salvaged Data,1
+    Silicate Powder,15
+    Pure Ferrite,5
+
+  Small Concrete Panel
+    _Salvaged Data,1
+    Silicate Powder,5
+
+  Concrete Triangle
+    _Salvaged Data,1
+    Silicate Powder,10
+
+  Small Concrete Triangle
+    ^,Concrete Triangle
+    _Salvaged Data,1
+    Silicate Powder,5
+
+  Thin Concrete Wall
+    _Salvaged Data,1
+    Silicate Powder,10
+
+  Sloping Concrete Panel
+    ^,Thin Concrete Wall
+    _Salvaged Data,1
+    Silicate Powder,10
+
+  Small Concrete Wall
+    ^,Thin Concrete Wall
+    _Salvaged Data,1
+    Silicate Powder,10
+
+  Short Concrete Wall
+    ^,Small Concrete Wall
+    _Salvaged Data,1
+    Silicate Powder,10
+
+  Concrete Door Frame
+    _Salvaged Data,2
+    Silicate Powder,25
+
+  Concrete Window Panel
+    _Salvaged Data,2
+    Silicate Powder,25
+    Glass,1
+
+  Concrete Frontage
+    ^,Concrete Window Panel
+    _Salvaged Data,3
+    Silicate Powder,25
+    Pure Ferrite,10
+
+  Concrete Doorway
+    ^,Concrete Door Frame
+    _Salvaged Data,1
+    Silicate Powder,10
+
+  Concrete Power Door
+    ^,Concrete Door Frame
+    _Salvaged Data,2
+    Carbon,25
+
+  Concrete Roof
+    _Salvaged Data,2
+    Silicate Powder,10
+
+  Concrete Roof Panel
+    _Salvaged Data,1
+    Silicate Powder,15
+
+  Concrete Roof Corner
+    _Salvaged Data,1
+    Silicate Powder,15
+
+  Concrete Inner Roof Corner
+    ^,Concrete Roof Corner
+    _Salvaged Data,1
+    Carbon,10
+    Ferrite Dust,10
+
+  Concrete Arch
+    _Salvaged Data,1
+    Silicate Powder,25
+
+  Concrete Half Arch
+    ^,Concrete Arch
+    _Salvaged Data,1
+    Silicate Powder,10
+
+LargePrefabs
+  Cylindrical Room
+    _Salvaged Data,3
+    Pure Ferrite,250
+
+  Square Room
+    _Salvaged Data,3
+    Pure Ferrite,250
+
+  Foundation
+    _Salvaged Data,3
+    Pure Ferrite,100
+
+  Paving
+    ^,Foundation
+    _Salvaged Data,1
+    Pure Ferrite,5
+
+  Paving2
+    ^,Paving
+    _Salvaged Data,1
+    Pure Ferrite,5
+
+  Paving3
+    ^,Paving
+    _Salvaged Data,1
+    Pure Ferrite,25
+
+  Cylindrical Room Frame
+    ^,Foundation
+    _Salvaged Data,3
+    Pure Ferrite,100
+
+  Straight Corridor
+    _Salvaged Data,5
+    Pure Ferrite,75
+
+  L-Shaped Corridor
+    _Salvaged Data,5
+    Pure Ferrite,75
+
+  T-Shaped Corridor
+    _Salvaged Data,5
+    Pure Ferrite,75
+
+  X-Shaped Corridor
+    _Salvaged Data,5
+    Pure Ferrite,75
+
+  Glass Roofed Corridor
+    _Salvaged Data,5
+    Pure Ferrite,75
+    Glass,1
+
+  Prefab Window
+    _Salvaged Data,1
+    Silver,25
+    Glass,1
+
+  Prefab Window2
+    _Salvaged Data,1
+    Silver,25
+    Glass,1
+
+  Large Glass Panel
+    _Salvaged Data,1
+    Glass,1
+
+  Bio-Dome
+    _Salvaged Data,10
+    Magnetised Ferrite,25
+    Glass,5
+
+  Viewing Sphere
+    _Salvaged Data,10
+    Magnetised Ferrite,25
+    Glass,3
+
+  Curved Corridor
+    _Salvaged Data,3
+    Pure Ferrite,75
+
+  Door
+    _Salvaged Data,1
+    Pure Ferrite,40
+
+  Holo-Door
+    _Salvaged Data,8
+    Gold,40
+    Pure Ferrite,40
+    Silicate Powder,40
+
+  Access Ramp
+    _Salvaged Data,1
+    Pure Ferrite,40
+    Carbon,50
+
+  Climb Ladder
+    _Salvaged Data,1
+    Pure Ferrite,30
+
+SmallPrefabs
+  Cuboid Room
+    _Salvaged Data,2
+    Pure Ferrite,100
+
+  Cuboid Room Fdn Strut
+    _Salvaged Data,1
+    Pure Ferrite,50
+
+  Cuboid Room Frame
+    _Salvaged Data,1
+    Pure Ferrite,50
+
+  Cuboid Room Flooring
+    _Salvaged Data,1
+    Pure Ferrite,50
+
+  Cuboid Room Fdn Quad
+    _Salvaged Data,1
+    Pure Ferrite,50
+
+  Curved Cuboid Wall
+    _Salvaged Data,3
+    Pure Ferrite,75
+
+  Interior Stairs
+    _Salvaged Data,2
+    Pure Ferrite,40
+    Carbon,30
+
+  Infrastructure Ladder
+    _Salvaged Data,1
+    Pure Ferrite,20
+
+  Cuboid Inner Wall
+    _Salvaged Data,1
+    Pure Ferrite,50
+
+  Cuboid Inner Door
+    _Salvaged Data,1
+    Pure Ferrite,40
+
+  Cuboid Roof Cap
+    _Salvaged Data,2
+    Pure Ferrite,50
+
+  Glass Cuboid Room
+    _Salvaged Data,5
+    Silver,75
+    Glass,2
+
+  Curved Cuboid Roof
+    _Salvaged Data,3
+    Pure Ferrite,50
+    Glass,2
+
+  Cuboid Window
+    _Salvaged Data,1
+    Silver,25
+    Glass,1
+
+  Cuboid Window2
+    _Salvaged Data,1
+    Silver,25
+    Glass,1
+
+Aquatic
+  Deep Water Chamber
+    _Salvaged Data,6
+    Pure Ferrite,180
+
+  Marine Shelter
+    _Salvaged Data,10
+    Living Pearl,5
+    Glass,1
+    Oxygen,25
+
+  Glass Tunnel
+    _Salvaged Data,3
+    Glass,1
+    Crystal Sulphide,2
+    Ferrite Dust,25
+
+  Large Glass Panel2
+    _Salvaged Data,1
+    Glass,1
+
+  L-Shaped Glass Tunnel
+    _Salvaged Data,3
+    Glass,1
+    Crystal Sulphide,2
+    Ferrite Dust,25
+
+  T-Shaped Glass Tunnel
+    _Salvaged Data,3
+    Glass,1
+    Crystal Sulphide,2
+    Ferrite Dust,25
+
+  X-Shaped Glass Tunnel
+    _Salvaged Data,3
+    Glass,1
+    Crystal Sulphide,2
+    Ferrite Dust,25
+
+  Vertical Glass Tunnel
+    _Salvaged Data,3
+    Glass,1
+    Crystal Sulphide,2
+    Ferrite Dust,25
+
+  Square Deep Water Chamber
+    _Salvaged Data,6
+    Pure Ferrite,180
+
+  Watertight Door
+    _Salvaged Data,2
+    Ferrite Dust,25
+    Crystal Sulphide,1
+
+  Moon Pool Floor
+    _Salvaged Data,10
+    Ferrite Dust,80
+    Crystal Sulphide,3
+    Living Pearl,2
+
+  Nautilon Chamber
+    _Salvaged Data,10
+    Metal Plating,5
+    Crystal Sulphide,4
+    Salt,100
+
+Agriculture
+  Hydroponic Tray
+    _Salvaged Data,3
+    Pure Ferrite,30
+    Metal Plating,2
+    Carbon,20
+
+  Potted Plant
+    _Salvaged Data,1
+    Carbon,10
+
+  Standing Planter
+    _Salvaged Data,2
+    Metal Plating,2
+    Condensed Carbon,25
+
+  Flora Containment
+    _Salvaged Data,1
+    Carbon,15
+
+  Flora Containment2
+    _Salvaged Data,1
+    Carbon,15
+
+  Flora Containment3
+    _Salvaged Data,1
+    Carbon,15
+
+  Large Hydroponic Tray
+    _Salvaged Data,10
+    Pure Ferrite,60
+    Metal Plating,4
+    Carbon,50
+
+  Fungal Cluster
+    _Salvaged Data,3
+    Fungal Mould,50
+    Ammonia,25
+
+  Venom Urchin
+    _Salvaged Data,3
+    Emeril,100
+    Gold,50
+
+  Frostwort
+    _Salvaged Data,3
+    Frost Crystal,50
+    Dioxite,25
+
+  Gravitino Host
+    _Salvaged Data,3
+    Chromatic Metal,25
+    Silver,120
+    Magnetised Ferrite,25
+
+  Gamma Weed
+    _Salvaged Data,3
+    Gamma Root,50
+    Uranium,25
+
+  Gutrot Flower
+    _Salvaged Data,3
+    Faecium,40
+
+  Echinocactus
+    _Salvaged Data,3
+    Cactus Flesh,50
+    Pyrite,25
+
+  Mordite Root
+    _Salvaged Data,3
+    Mordite,40
+
+  Star Bramble
+    _Salvaged Data,3
+    Star Bulb,50
+    Paraffinium,25
+
+  Albumen Pearl Orb
+    _Salvaged Data,3
+    Indium,60
+    Paraffinium,20
+
+  Solar Vine
+    _Salvaged Data,3
+    Solanium,50
+    Phosphorus,25
+
+  NipNip
+    _Salvaged Data,3
+    NipNip Buds,1
+    Faecium,20
+
+Freighter
+  Warp Core Resonator
+    _Salvaged Frigate Mod,4
+    Cadmium,250
+    Quantum Computer,1
+    Antimatter Housing,4
+
+  Amplified Warp Shielding
+    ^,Warp Core Resonator
+    _Salvaged Frigate Mod,4
+    Warp Hypercore,1
+    Quantum Computer,2
+    Cadmium,250
+
+  Chromatic Warp Shielding
+    ^,Amplified Warp Shielding
+    _Salvaged Frigate Mod,8
+    Warp Hypercore,1
+    Solar Mirror,2
+    Emeril,250
+
+  Temporal Warp Computer
+    ^,Chromatic Warp Shielding
+    _Salvaged Frigate Mod,12
+    Warp Hypercore,1
+    Magnetic Resonator,2
+    Indium,250
+
+  Plasmatic Warp Injector
+    ^,Warp Core Resonator
+    _Salvaged Frigate Mod,8
+    Emeril,250
+    Solar Mirror,1
+    Antimatter Housing,5
+
+  Reality De-Threader
+    ^,Plasmatic Warp Injector
+    _Salvaged Frigate Mod,12
+    Indium,250
+    Magnetic Resonator,1
+    Antimatter Housing,6
+
+  Matter Beam
+    _Salvaged Frigate Mod,4
+    Antimatter,5
+    Magnetic Resonator,3
+    Wiring Loom,10
+
+  Fuel Oxidiser
+    _Salvaged Frigate Mod,1
+    Quad Servo,1
+    Gold,50
+
+  Mind Control Device
+    _Salvaged Frigate Mod,1
+    Solar Mirror,1
+    Gold,50
+
+  Holographic Analyser
+    _Salvaged Frigate Mod,1
+    Quantum Computer,1
+    Gold,50
+
+  Mineral Compressor
+    _Salvaged Frigate Mod,1
+    Hydraulic Wiring,1
+    Gold,50
+
+  Explosive Drone
+    _Salvaged Frigate Mod,1
+    Walker Brain,1
+    Gold,50
+
+Exocraft
+  Fusion Engine
+    Magnetised Ferrite,25
+    Life Support Gel,2
+
+  Humboldt Drive
+    Magnetised Ferrite,25
+    Life Support Gel,2
+
+  High-Power Sonar
+    _Nanites,10
+    Solar Mirror,1
+    Crystal Sulphide,3
+    Ferrite Dust,50
+
+  Osmotic Generator
+    ^,High-Power Sonar
+    _Nanites,350
+    Chromatic Metal,150
+    Living Pearl,6
+    Solar Mirror,2
+
+  Tethys Beam
+    ^,High-Power Sonar
+    _Nanites,450
+    Magnetised Ferrite,50
+    Chlorine,100
+    Living Pearl,10
+
+  Nautilon Cannon
+    ^,High-Power Sonar
+    _Nanites,250
+    Chlorine,100
+    Crystal Sulphide,6
+    Living Pearl,2
+
+  Megawatt Heater
+    _Nanites,120
+    Phosphorus,80
+    Uranium,50
+    Wiring Loom,1
+
+  Air Filtration Unit
+    _Nanites,120
+    Copper,160
+    Carbon Nanotubes,5
+    Wiring Loom,1
+
+  Neutron Shielding
+    _Nanites,120
+    Ionised Cobalt,50
+    Deuterium,95
+    Wiring Loom,1
+
+  Termal Buffer
+    _Nanites,120
+    Dioxite,80
+    Hermetic Seal,2
+    Wiring Loom,1
+
+  Exocraft Signal Booster
+    _Nanites,120
+    Chromatic Metal,50
+    Microprocessor,1
+
+  Advanced Signal Booster
+    ^,Exocraft Signal Booster
+    _Nanites,210
+    Chromatic Metal,100
+    Ion Battery,2
+    Microprocessor,2
+
+  Exocraft Signal Booster Upgrade
+    ^,Exocraft Signal Booster
+    _Nanites,320
+    Chromatic Metal,150
+    Ion Battery,2
+    Gold,50
+
+  Exocraft Acceleration Module
+    _Nanites,180
+    Magnetised Ferrite,15
+    Chromatic Metal,50
+    Carbon Nanotubes,2
+
+  Icarus Fuel System
+    ^,Exocraft Acceleration Module
+    _Nanites,120
+    Storm Crystal,3
+    Microprocessor,2
+    Wiring Loom,2
+
+  Exocraft Mining Laser
+    _Nanites,180
+    Magnetised Ferrite,25
+    Chromatic Metal,100
+    Life Support Gel,2
+
+  Exocraft Mining Laser Upg Sigma
+    ^,Exocraft Mining Laser
+    _Nanites,210
+    Pugneum,50
+    Chromatic Metal,50
+
+  Exocrft Mounted Cannon
+    ^,Exocraft Mining Laser
+    _Nanites,210
+    Pugneum,50
+    Copper,100
+
+  Daedalus Drive
+    Warp Hypercore,2
+    Metal Plating,2
+    Wiring Loom,1
+
+  Environment Control Unit
+    Storm Crystal,3
+    Microprocessor,2
+    Wiring Loom,2
+
+  Ariadne's Flame
+    Amino Chamber,1
+    Metal Plating,4
+    Carbon Nanotubes,10
+
+  Self-Greasing Servos
+    _Nanites,120
+    Magnetised Ferrite,40
+    Acid,1
+    Wiring Loom,1
+
+  Minotaur Radar Array
+    _Nanites,120
+    Chromatic Metal,75
+    Gold,50
+    Wiring Loom,1
+
+  Minotaur Laser
+    _Nanites,180
+    Chromatic Metal,80
+    Di-hydrogen,65
+    Wiring Loom,1
+
+  Precision Minotaur Laser
+    ^,Minotaur Laser
+    _Nanites,210
+    Gravitino Ball,2
+    Solar Mirror,1
+
+  Minotaur Cannon
+    ^,Minotaur Laser
+    _Nanites,210
+    Pugneum,50
+    Projectile Ammunition,200
+    Wiring Loom,1
+
+  Minotaur Bore
+    ^,Minotaur Laser
+    _Nanites,210
+    Silicate Powder,100
+    Cobalt,40
+    Wiring Loom,1
+
+Transport
+  Roamer Geobay
+    _Salvaged Data,4
+    Metal Plating,4
+    Ion Battery,2
+    Paraffinium,50
+
+  Exocraft Summoning Station
+    _Salvaged Data,12
+    Uranium,100
+    Tritium,100
+    Unstable Plasma,4
+
+  Orbital Exocraft Materialiser
+    ^,Exocraft Summoning Station
+    _Salvaged Data,15
+    Gold,150
+    Ionised Cobalt,50
+    Warp Cell,3
+
+  Nomad Geobay
+    _Salvaged Data,8
+    Metal Plating,5
+    Ion Battery,2
+    Paraffinium,50
+
+  Minotaur Geobay
+    _Salvaged Data,10
+    Metal Plating,5
+    Ion Battery,4
+    Gold,100
+
+  Nautilon Chamber
+    _Salvaged Data,10
+    Metal Plating,5
+    Crystal Sulphide,4
+    Salt,100
+
+  Pilgrim Geobay
+    _Salvaged Data,10
+    Metal Plating,5
+    Silver,100
+    Di-hydrogen Jelly,5
+
+  Colossus Geobay
+    _Salvaged Data,8
+    Metal Plating,5
+    Ion Battery,4
+    Paraffinium,100
+
+  Race Initiator
+    _Salvaged Data,10
+    Metal Plating,5
+    Microprocessor,2
+    Ion Battery,1
+
+  Race Obstacle
+    ^,Race Initiator
+    _Salvaged Data,10
+    Metal Plating,5
+
+  Race Force Amplifier
+    ^,Race Initiator
+    _Salvaged Data,10
+    Metal Plating,5
+    Di-hydrogen Jelly,2`
+.split(/\n/).forEach((e) => {
+  if(e){
+    if(e.match(/^\S/)){
+      cat = e;
+      addCombo(e); // external dependency along w/ db, cat, key, value
+    }else if(e.match(/^ {4}/)){
+      db[cat][key].push(e.substr(4));
+    }else{
+      [key, value] = e.substr(2).split(/,/);
+      if(!(cat in db)){
+        db[cat] = Object.create(null);
+      }
+      db[cat][key] = [0];
+    }
+  }
+//}, {key:0, value:0, cat:0}); doesn't work this way!
+// see https://stackoverflow.com/questions/34556558/what-is-the-purpose-of-thisarg-in-foreach
+});
+}
+/* TODO
+     accum once for multiple _nanites, _salvaged data -- solved!
+     cp[key].num += ( !prop.match(/^\(S\)/) && key.match(/^_/) ? 1 : num ) * value;
+
+      <button class="b c">
+      <span class="r">_Nanites,6260 @0</span>
+      <span class="i">x10 Optical Drill,460</span>
+      <span class="i">x10 (S)Scanner,580</span></button>
+
+      <button class="b c">
+      <span class="r">_Salvaged Data,2 @0</span>
+      <span class="i">x10 Base Teleport Module,2</span></button>
+
+     Owned recipes = [carbon nanotube,c 50],[di-jelly,h 40],[metal plating,fe 50],[hermetic seal,c+ 30],[ch,cu 2] etc
+*/
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "short_name": "Blueprints",
+  "icons": [
+    {
+      "src": "favicon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "favicon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/shirha/raw/87d7efae3cb0aaaba0a61b72773f82cb",
+  "background_color": "#ea413a",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#ea413a"
+}
