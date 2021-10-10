@@ -1,0 +1,20 @@
+{
+  "short_name": "TVMCalc",
+  "icons": [
+    {
+      "src": "favicon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "favicon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/shirha/raw/79a30ac4a4691286b03e1abf393d3ad9/index.html",
+  "background_color": "#e8f0fe",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#e8f0fe"
+}

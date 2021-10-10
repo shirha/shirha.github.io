@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <meta name="mobile-web-app-capable" content="yes">
+<title>TVM Calculator</title>
+<link rel="stylesheet" type="text/css" href="skeleton-normalize-min.css">
+<link rel="manifest" href="manifest.json">
+<link rel="shortcut icon" type="image/png" href="favicon-512.png">
+<style type="text/css">
+:focus { outline: none; }
+input[type=button]:focus { background-color: #e8f0fe; }
+input, select { margin-bottom: 3px; }
+td { border-bottom-width: 0; padding: 0 10px 0 10px; }
+input:-webkit-autofill { -webkit-box-shadow: 0 0 0px 1000px white inset; }
+select { width: 118px; }
+input[type=button] { min-width:120px; background-color: #f8f8f8; }
+</style></head><body><div class="container"><form name=TVMCalc><table>
+  <tr><td colspan="2"><center><h3>TVM Calculator</h3></center>
+  <tr><td><input onclick=findPV(this.form) type="button" value="PV"><td>$
+          <input maxLength="8" size="8" inputmode="numeric" pattern="[0-9]*" type="text" autocomplete="off" name=PVInput>
+  <tr><td><input onclick=findPMT(this.form) type="button" value="PMT"><td>$
+          <input maxLength="8" size="8" inputmode="numeric" pattern="[0-9]*" type="text" autocomplete="off" name=PMTInput>
+  <tr><td><input onclick=findFV(this.form) type="button" value="FV"><td>$
+          <input maxLength="8" size="8" inputmode="numeric" pattern="[0-9]*" type="text" autocomplete="off" name=FVInput>
+  <tr><td><input onclick=findNR(this.form) type="button" value="Rate"><td>&nbsp;&nbsp;
+          <input maxLength="8" size="8" inputmode="numeric" pattern="[0-9]*" type="text" autocomplete="off" name=NRInput>%
+  <tr><td><input onclick=findNP(this.form) type="button" value="Periods"><td>&nbsp;&nbsp;
+          <input maxLength="8" size="8" inputmode="numeric" pattern="[0-9]*" type="text" autocomplete="off" name=NPInput>
+  <tr><td><select name=CInput> 
+    <option value=0 selected>Annual 
+    <option value=1>Semiannual 
+    <option value=2>Quarterly 
+    <option value=3>Monthly 
+    <option value=4>Weekly 
+    <option value=5>Daily</select><td>&nbsp;&nbsp;
+          <input maxLength="8" size="8" type="text" name=PmtxPer disabled></td>
+</table></form></div>
+<script language=JavaScript src="main.js"></script>
+</body></html>

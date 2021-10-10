@@ -1,0 +1,20 @@
+{
+  "short_name": "Emoji",
+  "icons": [
+    {
+      "src": "favicon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "favicon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/shirha/raw/8ecae0af3666d30a7210fb1b6e7d1df7/index.html",
+  "background_color": "#D2B48C",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#D2B48C"
+}
