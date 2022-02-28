@@ -45,3 +45,5 @@
 [NMS Travelers](https://bl.ocks.org/shirha/raw/004f6d1386c72b4ac438fad61495376b/)
 
 [NMS Derelict](https://bl.ocks.org/shirha/raw/dab64a35b092bee024462257100f5fc2/)
+
+[Silver Barter](https://bl.ocks.org/shirha/raw/599eb864ae1703b6b0ad0cd21ecc19c6/)
