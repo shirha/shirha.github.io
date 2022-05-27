@@ -46,4 +46,6 @@
 
 [NMS Derelict](https://bl.ocks.org/shirha/raw/dab64a35b092bee024462257100f5fc2/)
 
+[NMS Leviathan](https://bl.ocks.org/shirha/raw/e8caf3d1bad34e86ad36c2f85508b19a/)
+
 [Silver Barter](https://bl.ocks.org/shirha/raw/599eb864ae1703b6b0ad0cd21ecc19c6/)
