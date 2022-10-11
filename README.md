@@ -52,3 +52,5 @@
 
 [NMS GHub bases](https://bl.ocks.org/shirha/raw/44461905ea26e4a3ce0f8b33bd76fe17/)
 
+[Macroeconomics & Geopolitics](https://bl.ocks.org/shirha/raw/9f6aa8c217c826a899f8956cf144a12b/)
+
