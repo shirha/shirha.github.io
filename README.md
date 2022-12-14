@@ -34,31 +34,19 @@
     - [Expeditions](https://shirha.github.io/expedition/) 
     - [GalHub bases](https://shirha.github.io/ghbases/)
 
-[//]: # [Blueprints](https://bl.ocks.org/shirha/raw/87d7efae3cb0aaaba0a61b72773f82cb/)
-
-[//]: # [Void](https://bl.ocks.org/shirha/raw/4abce9522fd08b6f99a23f808e396d80/)
-
-[//]: # [GHub bases](https://bl.ocks.org/shirha/raw/44461905ea26e4a3ce0f8b33bd76fe17/)
-
-[//]: # [Emoji](https://bl.ocks.org/shirha/raw/8ecae0af3666d30a7210fb1b6e7d1df7/)
-
-[//]: # [Fallout 4 Worksheet](https://bl.ocks.org/shirha/raw/e53bf7f5821ed15ac469bbabafd1060e)
-
-[//]: # [Diet](https://bl.ocks.org/shirha/raw/bf808f78666e33e8612666075e3877ed/)
-
-[//]: # [Covers](https://bl.ocks.org/shirha/raw/e92996647c2f2029078c734efd51bd39/)
-
-[//]: # [Multibooks](https://bl.ocks.org/shirha/raw/f75cd69b13b83d12acc0e7a4d576dbb8/)
-
-[//]: # [New Releases](https://bl.ocks.org/shirha/raw/bb6c0e5046f8529c4ea1598be961ea11/)
-
-[//]: # [Deep Nutrition-5](https://bl.ocks.org/shirha/raw/0f590c7351d4194b7c0facd04d914ba4/)
-
-[//]: # [Codes of Longevity-11](https://bl.ocks.org/shirha/raw/0bde297ce8d5f5d2755e9e48c7ebbbc4/)
-
-[//]: # [NMS Anomaly](https://bl.ocks.org/shirha/raw/f59a0d1fc170efb208251831e34dc8cd/)
-
-[//]: # [NMS Expeditions](https://bl.ocks.org/shirha/raw/e8caf3d1bad34e86ad36c2f85508b19a/)
-
-[//]: # [Macroeconomics & Geopolitics](https://bl.ocks.org/shirha/raw/9f6aa8c217c826a899f8956cf144a12b/)
-
+<!--
+[Blueprints](https://bl.ocks.org/shirha/raw/87d7efae3cb0aaaba0a61b72773f82cb/)
+[Void](https://bl.ocks.org/shirha/raw/4abce9522fd08b6f99a23f808e396d80/)
+[GHub bases](https://bl.ocks.org/shirha/raw/44461905ea26e4a3ce0f8b33bd76fe17/)
+[Emoji](https://bl.ocks.org/shirha/raw/8ecae0af3666d30a7210fb1b6e7d1df7/)
+[Fallout 4 Worksheet](https://bl.ocks.org/shirha/raw/e53bf7f5821ed15ac469bbabafd1060e)
+[Diet](https://bl.ocks.org/shirha/raw/bf808f78666e33e8612666075e3877ed/)
+[Covers](https://bl.ocks.org/shirha/raw/e92996647c2f2029078c734efd51bd39/)
+[Multibooks](https://bl.ocks.org/shirha/raw/f75cd69b13b83d12acc0e7a4d576dbb8/)
+[New Releases](https://bl.ocks.org/shirha/raw/bb6c0e5046f8529c4ea1598be961ea11/)
+[Deep Nutrition-5](https://bl.ocks.org/shirha/raw/0f590c7351d4194b7c0facd04d914ba4/)
+[Codes of Longevity-11](https://bl.ocks.org/shirha/raw/0bde297ce8d5f5d2755e9e48c7ebbbc4/)
+[NMS Anomaly](https://bl.ocks.org/shirha/raw/f59a0d1fc170efb208251831e34dc8cd/)
+[NMS Expeditions](https://bl.ocks.org/shirha/raw/e8caf3d1bad34e86ad36c2f85508b19a/)
+[Macroeconomics & Geopolitics](https://bl.ocks.org/shirha/raw/9f6aa8c217c826a899f8956cf144a12b/)
+-->
