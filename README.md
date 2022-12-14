@@ -1,5 +1,7 @@
 # Gallery
 
+[Cantonese Dictionary](https://shirha.github.io/cantonese/)
+
 [Freecell](http://freecell-mobile.appspot.com/)
 
 [Emoji](https://shirha.github.io/emoji/)
@@ -7,8 +9,6 @@
 [Sudoku](https://bl.ocks.org/shirha/raw/f7299bf9862dd7f8c1c3b30d909ab5ff/)
 
 [Doom](https://drive.google.com/open?id=15tkgXE1KFRBEXvJIuYmsN-htulK4ZceT)
-
-[Cantonese Dictionary](https://bl.ocks.org/shirha/raw/ac03b7bdb80204080320763367014d98/)
 
 [15m Ringtone](https://bl.ocks.org/shirha/raw/1b5b145ed30e68aa7c6ee1039133a3ab/)
 
@@ -20,11 +20,7 @@
 
 [Silver Barter](https://bl.ocks.org/shirha/raw/599eb864ae1703b6b0ad0cd21ecc19c6/)
 
-[Economic YouTube](https://shirha.github.io/economy/)
-
-[Apostles](https://bl.ocks.org/shirha/raw/272818e67d0b952bc5188731c11c0c53/)
-
-[Apocrypha](https://bl.ocks.org/shirha/raw/972a54b89c7dcbfe053eff385ab3dcd7/)
+[YouTube Econ](https://shirha.github.io/economy/)
 
 * NMS
     - [Fade](https://shirha.github.io/fade/)
@@ -34,7 +30,12 @@
     - [Expeditions](https://shirha.github.io/expedition/) 
     - [GalHub bases](https://shirha.github.io/ghbases/)
 
+[Apostles](https://bl.ocks.org/shirha/raw/272818e67d0b952bc5188731c11c0c53/)
+
+[Apocrypha](https://bl.ocks.org/shirha/raw/972a54b89c7dcbfe053eff385ab3dcd7/)
+
 <!--
+[Cantonese Dictionary](https://bl.ocks.org/shirha/raw/ac03b7bdb80204080320763367014d98/)
 [Blueprints](https://bl.ocks.org/shirha/raw/87d7efae3cb0aaaba0a61b72773f82cb/)
 [Void](https://bl.ocks.org/shirha/raw/4abce9522fd08b6f99a23f808e396d80/)
 [GHub bases](https://bl.ocks.org/shirha/raw/44461905ea26e4a3ce0f8b33bd76fe17/)
