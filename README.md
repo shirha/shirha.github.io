@@ -2,8 +2,6 @@
 
 [Freecell](http://freecell-mobile.appspot.com/)
 
-[//]: # [Emoji](https://bl.ocks.org/shirha/raw/8ecae0af3666d30a7210fb1b6e7d1df7/)
-
 [Emoji](https://shirha.github.io/emoji/)
 
 [Sudoku](https://bl.ocks.org/shirha/raw/f7299bf9862dd7f8c1c3b30d909ab5ff/)
@@ -11,8 +9,6 @@
 [Doom](https://drive.google.com/open?id=15tkgXE1KFRBEXvJIuYmsN-htulK4ZceT)
 
 [Cantonese Dictionary](https://bl.ocks.org/shirha/raw/ac03b7bdb80204080320763367014d98/)
-
-[//]: # [Fallout 4 Worksheet](https://bl.ocks.org/shirha/raw/e53bf7f5821ed15ac469bbabafd1060e)
 
 [15m Ringtone](https://bl.ocks.org/shirha/raw/1b5b145ed30e68aa7c6ee1039133a3ab/)
 
@@ -22,13 +18,29 @@
 
 [KR Calculator](https://bl.ocks.org/shirha/raw/da239b2c87d0b0196a1491563eebed54/)
 
-[//]: # [Diet](https://bl.ocks.org/shirha/raw/bf808f78666e33e8612666075e3877ed/)
+[Silver Barter](https://bl.ocks.org/shirha/raw/599eb864ae1703b6b0ad0cd21ecc19c6/)
 
-[//]: # [Covers](https://bl.ocks.org/shirha/raw/e92996647c2f2029078c734efd51bd39/)
+[Economic YouTube]((https://shirha.github.io/economy/)
 
 [Apostles](https://bl.ocks.org/shirha/raw/272818e67d0b952bc5188731c11c0c53/)
 
 [Apocrypha](https://bl.ocks.org/shirha/raw/972a54b89c7dcbfe053eff385ab3dcd7/)
+
+NMS
+  * [Void](https://bl.ocks.org/shirha/raw/4abce9522fd08b6f99a23f808e396d80/)
+  * [Blueprints](https://bl.ocks.org/shirha/raw/87d7efae3cb0aaaba0a61b72773f82cb/)
+  * [Travelers](https://bl.ocks.org/shirha/raw/004f6d1386c72b4ac438fad61495376b/)
+  * [Derelict](https://bl.ocks.org/shirha/raw/dab64a35b092bee024462257100f5fc2/)
+  * [Expeditions](https://shirha.github.io/expedition/) 
+  * [GHub bases](https://bl.ocks.org/shirha/raw/44461905ea26e4a3ce0f8b33bd76fe17/)
+
+[//]: # [Emoji](https://bl.ocks.org/shirha/raw/8ecae0af3666d30a7210fb1b6e7d1df7/)
+
+[//]: # [Fallout 4 Worksheet](https://bl.ocks.org/shirha/raw/e53bf7f5821ed15ac469bbabafd1060e)
+
+[//]: # [Diet](https://bl.ocks.org/shirha/raw/bf808f78666e33e8612666075e3877ed/)
+
+[//]: # [Covers](https://bl.ocks.org/shirha/raw/e92996647c2f2029078c734efd51bd39/)
 
 [//]: # [Multibooks](https://bl.ocks.org/shirha/raw/f75cd69b13b83d12acc0e7a4d576dbb8/)
 
@@ -40,22 +52,7 @@
 
 [//]: # [NMS Anomaly](https://bl.ocks.org/shirha/raw/f59a0d1fc170efb208251831e34dc8cd/)
 
-[NMS Void](https://bl.ocks.org/shirha/raw/4abce9522fd08b6f99a23f808e396d80/)
-
-[NMS Blueprints](https://bl.ocks.org/shirha/raw/87d7efae3cb0aaaba0a61b72773f82cb/)
-
-[NMS Travelers](https://bl.ocks.org/shirha/raw/004f6d1386c72b4ac438fad61495376b/)
-
-[NMS Derelict](https://bl.ocks.org/shirha/raw/dab64a35b092bee024462257100f5fc2/)
-
 [//]: # [NMS Expeditions](https://bl.ocks.org/shirha/raw/e8caf3d1bad34e86ad36c2f85508b19a/)
-
-[NMS Expeditions](https://shirha.github.io/expedition/) 
-
-[Silver Barter](https://bl.ocks.org/shirha/raw/599eb864ae1703b6b0ad0cd21ecc19c6/)
-
-[NMS GHub bases](https://bl.ocks.org/shirha/raw/44461905ea26e4a3ce0f8b33bd76fe17/)
 
 [//]: # [Macroeconomics & Geopolitics](https://bl.ocks.org/shirha/raw/9f6aa8c217c826a899f8956cf144a12b/)
 
-[Macroeconomics & Geopolitics]((https://shirha.github.io/economy/)
