@@ -2,7 +2,9 @@
 
 [Freecell](http://freecell-mobile.appspot.com/)
 
-[Emoji](https://bl.ocks.org/shirha/raw/8ecae0af3666d30a7210fb1b6e7d1df7/)
+[//]: # [Emoji](https://bl.ocks.org/shirha/raw/8ecae0af3666d30a7210fb1b6e7d1df7/)
+
+[Emoji](https://shirha.github.io/emoji/)
 
 [Sudoku](https://bl.ocks.org/shirha/raw/f7299bf9862dd7f8c1c3b30d909ab5ff/)
 
@@ -46,11 +48,14 @@
 
 [NMS Derelict](https://bl.ocks.org/shirha/raw/dab64a35b092bee024462257100f5fc2/)
 
-[NMS Expeditions](https://bl.ocks.org/shirha/raw/e8caf3d1bad34e86ad36c2f85508b19a/)
+[//]: # [NMS Expeditions](https://bl.ocks.org/shirha/raw/e8caf3d1bad34e86ad36c2f85508b19a/)
+
+[NMS Expeditions](https://shirha.github.io/expedition/) 
 
 [Silver Barter](https://bl.ocks.org/shirha/raw/599eb864ae1703b6b0ad0cd21ecc19c6/)
 
 [NMS GHub bases](https://bl.ocks.org/shirha/raw/44461905ea26e4a3ce0f8b33bd76fe17/)
 
-[Macroeconomics & Geopolitics](https://bl.ocks.org/shirha/raw/9f6aa8c217c826a899f8956cf144a12b/)
+[//]: # [Macroeconomics & Geopolitics](https://bl.ocks.org/shirha/raw/9f6aa8c217c826a899f8956cf144a12b/)
 
+[Macroeconomics & Geopolitics]((https://shirha.github.io/economy/)
