@@ -32,7 +32,7 @@
     - [Travelers](https://bl.ocks.org/shirha/raw/004f6d1386c72b4ac438fad61495376b/)
     - [Derelict](https://bl.ocks.org/shirha/raw/dab64a35b092bee024462257100f5fc2/)
     - [Expeditions](https://shirha.github.io/expedition/) 
-    - [GHub bases](https://shirha.github.io/GHbases/)
+    - [GalHub bases](https://shirha.github.io/GHbases/)
 
 [//]: # [Void](https://bl.ocks.org/shirha/raw/4abce9522fd08b6f99a23f808e396d80/)
 
