@@ -6,19 +6,17 @@
 
 [Emoji](https://shirha.github.io/emoji/)
 
-[Sudoku](https://bl.ocks.org/shirha/raw/f7299bf9862dd7f8c1c3b30d909ab5ff/)
+[Sudoku](https://shirha.github.io/sudoku/)
 
 [Doom](https://drive.google.com/open?id=15tkgXE1KFRBEXvJIuYmsN-htulK4ZceT)
 
-[15m Ringtone](https://bl.ocks.org/shirha/raw/1b5b145ed30e68aa7c6ee1039133a3ab/)
+[15m Ringtone](https://shirha.github.io/ringtone/)
 
-[TVMCalc](https://bl.ocks.org/shirha/raw/79a30ac4a4691286b03e1abf393d3ad9/)
+[TVMCalc](https://shirha.github.io/tvmcalc/)
 
-[VPWCalc](https://bl.ocks.org/shirha/raw/a5b36440d91d35ec4f4afb423ce9b4ca/)
+[KR Calculator](https://shirha.github.io/krcalc/)
 
-[KR Calculator](https://bl.ocks.org/shirha/raw/da239b2c87d0b0196a1491563eebed54/)
-
-[Silver Barter](https://bl.ocks.org/shirha/raw/599eb864ae1703b6b0ad0cd21ecc19c6/)
+[Silver Barter](https://shirha.github.io/barter/)
 
 [YouTube Econ](https://shirha.github.io/economy/)
 
@@ -35,6 +33,12 @@
 [Apocrypha](https://bl.ocks.org/shirha/raw/972a54b89c7dcbfe053eff385ab3dcd7/)
 
 <!--
+[VPWCalc](https://bl.ocks.org/shirha/raw/a5b36440d91d35ec4f4afb423ce9b4ca/)
+[KR Calculator](https://bl.ocks.org/shirha/raw/da239b2c87d0b0196a1491563eebed54/)
+[Sudoku](https://bl.ocks.org/shirha/raw/f7299bf9862dd7f8c1c3b30d909ab5ff/)
+[TVMCalc](https://bl.ocks.org/shirha/raw/79a30ac4a4691286b03e1abf393d3ad9/)
+[15m Ringtone](https://bl.ocks.org/shirha/raw/1b5b145ed30e68aa7c6ee1039133a3ab/)
+[Silver Barter](https://bl.ocks.org/shirha/raw/599eb864ae1703b6b0ad0cd21ecc19c6/)
 [Cantonese Dictionary](https://bl.ocks.org/shirha/raw/ac03b7bdb80204080320763367014d98/)
 [Blueprints](https://bl.ocks.org/shirha/raw/87d7efae3cb0aaaba0a61b72773f82cb/)
 [Void](https://bl.ocks.org/shirha/raw/4abce9522fd08b6f99a23f808e396d80/)
