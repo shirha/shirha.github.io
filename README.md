@@ -24,7 +24,7 @@
     - [Fade](https://shirha.github.io/fade/)
     - [Blueprints](https://bl.ocks.org/shirha/raw/blueprints/)
     - [Travelers](https://bl.ocks.org/shirha/raw/004f6d1386c72b4ac438fad61495376b/)
-    - [Derelict](https://bl.ocks.org/shirha/raw/dab64a35b092bee024462257100f5fc2/)
+    - [Derelict](https://shirha.github.io/derelicts)
     - [Expeditions](https://shirha.github.io/expedition/) 
     - [GalHub bases](https://shirha.github.io/ghbases/)
 
@@ -33,6 +33,7 @@
 [Apocrypha](https://bl.ocks.org/shirha/raw/972a54b89c7dcbfe053eff385ab3dcd7/)
 
 <!--
+[Derelict](https://bl.ocks.org/shirha/raw/dab64a35b092bee024462257100f5fc2/)
 [VPWCalc](https://bl.ocks.org/shirha/raw/a5b36440d91d35ec4f4afb423ce9b4ca/)
 [KR Calculator](https://bl.ocks.org/shirha/raw/da239b2c87d0b0196a1491563eebed54/)
 [Sudoku](https://bl.ocks.org/shirha/raw/f7299bf9862dd7f8c1c3b30d909ab5ff/)
