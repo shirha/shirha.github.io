@@ -24,7 +24,7 @@
     - [Fade](https://shirha.github.io/fade/)
     - [Blueprints](https://bl.ocks.org/shirha/raw/blueprints/)
     - [Travelers](https://bl.ocks.org/shirha/raw/004f6d1386c72b4ac438fad61495376b/)
-    - [Derelict](https://shirha.github.io/derelicts)
+    - [Derelict](https://shirha.github.io/derelict)
     - [Expeditions](https://shirha.github.io/expedition/) 
     - [GalHub bases](https://shirha.github.io/ghbases/)
 
