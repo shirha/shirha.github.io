@@ -21,7 +21,7 @@
 [YouTube Econ](https://shirha.github.io/economy/)
 
 * NMS
-    - [Fade](https://shirha.github.io/fade/)
+    - [The Fade](https://shirha.github.io/fade/)
     - [Blueprints](https://shirha.github.io/blueprints/)
     - [Travelers](https://bl.ocks.org/shirha/raw/004f6d1386c72b4ac438fad61495376b/)
     - [Derelict](https://shirha.github.io/derelict)
