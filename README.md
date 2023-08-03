@@ -20,6 +20,8 @@
 
 [YouTube Econ](https://shirha.github.io/economy/)
 
+[Forge of Empires todo](https://shirha.github.io/foe-todo/)
+
 * NMS
     - [The Fade](https://shirha.github.io/fade/)
     - [Blueprints](https://shirha.github.io/blueprints/)
