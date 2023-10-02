@@ -22,6 +22,8 @@
 
 [Forge of Empires todo](https://shirha.github.io/foe-todo/)
 
+[Starfield Digipick Solver](https://shirha.github.io/digipick/)
+
 * NMS
     - [The Fade](https://shirha.github.io/fade/)
     - [Blueprints](https://shirha.github.io/blueprints/)
@@ -31,13 +33,11 @@
     - [GalacticHub bases](https://shirha.github.io/ghbases/)
     - [QBall's Haulers](https://shirha.github.io/haulers/)
 
-[The Rapture Question](https://shirha.github.io/The-Rapture-Question/)
-
-[Apostles](https://bl.ocks.org/shirha/raw/272818e67d0b952bc5188731c11c0c53/)
-
-[Apocrypha](https://bl.ocks.org/shirha/raw/972a54b89c7dcbfe053eff385ab3dcd7/)
 
 <!--
+[The Rapture Question](https://shirha.github.io/The-Rapture-Question/)
+[Apostles](https://bl.ocks.org/shirha/raw/272818e67d0b952bc5188731c11c0c53/)
+[Apocrypha](https://bl.ocks.org/shirha/raw/972a54b89c7dcbfe053eff385ab3dcd7/)
 [Derelict](https://bl.ocks.org/shirha/raw/dab64a35b092bee024462257100f5fc2/)
 [VPWCalc](https://bl.ocks.org/shirha/raw/a5b36440d91d35ec4f4afb423ce9b4ca/)
 [KR Calculator](https://bl.ocks.org/shirha/raw/da239b2c87d0b0196a1491563eebed54/)
