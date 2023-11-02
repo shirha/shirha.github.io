@@ -21,6 +21,7 @@
 [YouTube Econ](https://shirha.github.io/economy/)
 
 [Behavioral Finance](https://shirha.github.io/behavioral-finance/content/Genre_behavioralfinance.html)
+    - [Deflation Essay](https://shirha.github.io/behavioral-finance/deflation_essay.html)
 
 [Forge of Empires todo](https://shirha.github.io/foe-todo/)
 
