@@ -18,7 +18,9 @@
 
 [Silver Barter](https://shirha.github.io/barter/)
 
-[YouTube Econ](https://shirha.github.io/economy/)
+[YouTube Econ](https://shirha.github.io/economy/)<br>
+    - [Bitcoin Value Proposition](https://shirha.github.io/economy/bitcoin_value_proposition.png)
+
 
 [Behavioral Finance](https://shirha.github.io/behavioral-finance/content/Genre_behavioralfinance.html)<br>
     - [Deflation Essay](https://shirha.github.io/behavioral-finance/deflation_essay.html)
