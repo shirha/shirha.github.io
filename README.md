@@ -32,14 +32,15 @@
 * NMS
     - [The Fade](https://shirha.github.io/fade/)
     - [Blueprints](https://shirha.github.io/blueprints/)
-    - [2 Glyph Travellers](https://nomanssky.fandom.com/wiki/2_Glyph_Travellers)
-    - [Derelict](https://shirha.github.io/derelict)
+    - [Travellers](https://shirha.github.io/travellers)
     - [Expeditions](https://shirha.github.io/expedition/) 
     - [GalacticHub bases](https://shirha.github.io/ghbases/)
     - [QBall's Haulers](https://shirha.github.io/haulers/)
 
 
 <!--
+[2 Glyph Travellers](https://nomanssky.fandom.com/wiki/2_Glyph_Travellers)
+[Derelict](https://shirha.github.io/derelict)
 [The Rapture Question](https://shirha.github.io/The-Rapture-Question/)
 [Apostles](https://bl.ocks.org/shirha/raw/272818e67d0b952bc5188731c11c0c53/)
 [Apocrypha](https://bl.ocks.org/shirha/raw/972a54b89c7dcbfe053eff385ab3dcd7/)
