@@ -36,6 +36,7 @@
     - [Expeditions](https://shirha.github.io/expedition/) 
     - [GalacticHub bases](https://shirha.github.io/ghbases/)
     - [QBall's Haulers](https://shirha.github.io/haulers/)
+    - [Derelict](http://192.168.0.10:5000)
 
 
 <!--
