@@ -2,7 +2,7 @@
 
 [Cantonese Dictionary](https://shirha.github.io/cantonese/)
 
-[Freecell](http://freecell-mobile.appspot.com/)
+[Freecell](http://shirha.github.io/freecell)
 
 [Emoji](https://shirha.github.io/emoji/)
 
