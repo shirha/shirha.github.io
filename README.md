@@ -27,7 +27,7 @@
 
 [Forge of Empires todo](https://shirha.github.io/foe-todo/)
 
-[Starfield Digipick Solver](https://shirha.github.io/digipick/)
+[Starfield Digipick Solver](https://shirha.github.io/digipick/)<br>
     - [Skills Tracker](https://shirha.github.io/digipick/skills.html)
     
 * NMS
