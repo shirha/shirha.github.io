@@ -8,8 +8,6 @@
 
 [Sudoku](https://shirha.github.io/sudoku/)
 
-[Doom](https://drive.google.com/open?id=15tkgXE1KFRBEXvJIuYmsN-htulK4ZceT)
-
 [15m Ringtone](https://shirha.github.io/ringtone/)
 
 [TVMCalc](https://shirha.github.io/tvmcalc/)
@@ -42,6 +40,7 @@
 
 <!--
     - [Bitcoin Value Proposition](https://shirha.github.io/economy/bitcoin_value_proposition.png)
+[Doom](https://drive.google.com/open?id=15tkgXE1KFRBEXvJIuYmsN-htulK4ZceT)
 [2 Glyph Travellers](https://nomanssky.fandom.com/wiki/2_Glyph_Travellers)
 [Derelict](https://shirha.github.io/derelict)
 [The Rapture Question](https://shirha.github.io/The-Rapture-Question/)
