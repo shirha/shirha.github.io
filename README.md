@@ -37,7 +37,7 @@
     - [QBall's Haulers](https://shirha.github.io/haulers/)
     - [Derelict](http://192.168.0.10:5000)
  
-[Amenni-Akr // Tasburyd W46](shirha.github.io/expedition/slideshow1.html?index=26)
+[Amenni-Akr // Tasburyd W46](https://shirha.github.io/expedition/slideshow1.html?index=26)
 
 
 <!--
