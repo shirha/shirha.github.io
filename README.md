@@ -36,6 +36,8 @@
     - [GalacticHub bases](https://shirha.github.io/ghbases/)
     - [QBall's Haulers](https://shirha.github.io/haulers/)
     - [Derelict](http://192.168.0.10:5000)
+ 
+[Amenni-Akr // Tasburyd W46](shirha.github.io/expedition/slideshow1.html?index=26)
 
 
 <!--
