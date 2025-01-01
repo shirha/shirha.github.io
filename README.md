@@ -37,11 +37,11 @@
     - [QBall's Haulers](https://shirha.github.io/haulers/)
     - [Derelict](http://192.168.0.10:5000)
  
-[Amenni-Akr // Tasburyd W46](https://shirha.github.io/expedition/slideshow1.html?index=26)
 
 
 <!--
-    - [Bitcoin Value Proposition](https://shirha.github.io/economy/bitcoin_value_proposition.png)
+[Amenni-Akr // Tasburyd W46](https://shirha.github.io/expedition/slideshow1.html?index=26)
+- [Bitcoin Value Proposition](https://shirha.github.io/economy/bitcoin_value_proposition.png)
 [Doom](https://drive.google.com/open?id=15tkgXE1KFRBEXvJIuYmsN-htulK4ZceT)
 [2 Glyph Travellers](https://nomanssky.fandom.com/wiki/2_Glyph_Travellers)
 [Derelict](https://shirha.github.io/derelict)
