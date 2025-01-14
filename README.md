@@ -33,7 +33,7 @@
     - [Expeditions](https://shirha.github.io/expedition/)
       - [Two Glyphs](https://shirha.github.io/expedition/Two%20Glyphs.html)
       - [Portal](https://shirha.github.io/expedition/portal.html)
-      - [Ships](https://shirha.github.io/expedition/Ships and Pilots2.html) & [Pilots](https://shirha.github.io/expedition/Ships and Pilots1.png)
+      - [Ships](https://shirha.github.io/expedition/Ships_and_Pilots2.html) &amp; [Pilots](https://shirha.github.io/expedition/Ships_and_Pilots1.png)
     - [GalacticHub bases](https://shirha.github.io/ghbases/)
     - [QBall's Haulers](https://shirha.github.io/haulers/)
     - [Derelict](http://192.168.0.10:5000)
