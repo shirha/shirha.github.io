@@ -31,6 +31,7 @@
     - [Blueprints](https://shirha.github.io/blueprints/)
     - [Travellers](https://shirha.github.io/travellers)
     - [Expeditions](https://shirha.github.io/expedition/)
+      - [Glyphs Detector](https://shirha.github.io/expedition/Glyphs.html)
       - [Two Glyphs](https://shirha.github.io/expedition/Two%20Glyphs.html)
       - [Portal](https://shirha.github.io/expedition/portal.html)
       - [Ships](https://shirha.github.io/expedition/Ships_and_Pilots2.html) & [Pilots](https://shirha.github.io/expedition/Ships_and_Pilots1.png)
