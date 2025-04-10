@@ -33,7 +33,7 @@
     - [Travellers](https://shirha.github.io/travellers)
     - [Expeditions](https://shirha.github.io/expedition/)
       - [Glyphs Detector](https://shirha.github.io/expedition/es6/index.html)
-        - [Docs](https://shirha.github.io/expedition/es6/appdoc.html)  [1](https://shirha.github.io/expedition/es6/i/1.jpg)  [2](https://shirha.github.io/expedition/es6/i/2.jpg)  [3](https://shirha.github.io/expedition/es6/i/3.jpg)
+        - [Docs](https://shirha.github.io/expedition/es6/appdoc.html) <pre>   [1](https://shirha.github.io/expedition/es6/i/1.jpg)   [2](https://shirha.github.io/expedition/es6/i/2.jpg)   [3] (https://shirha.github.io/expedition/es6/i/3.jpg) </pre>
       - [Two Glyphs](https://shirha.github.io/expedition/Two%20Glyphs.html)
       - [Portal](https://shirha.github.io/expedition/portal.html)
       - [Ships](https://shirha.github.io/expedition/Ships_and_Pilots2.html) & [Pilots](https://shirha.github.io/expedition/Ships_and_Pilots1.png)
