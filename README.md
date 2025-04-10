@@ -15,6 +15,7 @@
 [KR Calculator](https://shirha.github.io/krcalc/)
 
 [Silver Barter](https://shirha.github.io/barter/)
+    - [Docs](https://shirha.github.io/barter/docs.html)
 
 [YouTube Econ](https://shirha.github.io/economy/)<br>
 
@@ -32,6 +33,7 @@
     - [Travellers](https://shirha.github.io/travellers)
     - [Expeditions](https://shirha.github.io/expedition/)
       - [Glyphs Detector](https://shirha.github.io/expedition/glyphs_detector_min.html)
+        - [Docs](https://shirha.github.io/expedition/glyphs_detector_docs.html)
       - [Two Glyphs](https://shirha.github.io/expedition/Two%20Glyphs.html)
       - [Portal](https://shirha.github.io/expedition/portal.html)
       - [Ships](https://shirha.github.io/expedition/Ships_and_Pilots2.html) & [Pilots](https://shirha.github.io/expedition/Ships_and_Pilots1.png)
