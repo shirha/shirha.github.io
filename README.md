@@ -27,7 +27,7 @@
 [Starfield Digipick Solver](https://shirha.github.io/digipick/)<br>
     - [Skills Tracker](https://shirha.github.io/digipick/skills.html)
     
-** NMS
+* NMS
     - [The Fade](https://shirha.github.io/fade/)
     - [Blueprints](https://shirha.github.io/blueprints/)
     - [Travellers](https://shirha.github.io/travellers)
