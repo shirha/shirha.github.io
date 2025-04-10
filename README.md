@@ -32,8 +32,8 @@
     - [Blueprints](https://shirha.github.io/blueprints/)
     - [Travellers](https://shirha.github.io/travellers)
     - [Expeditions](https://shirha.github.io/expedition/)
-      - [Glyphs Detector](https://shirha.github.io/expedition/es6/index.html)
-        -  [Docs](https://shirha.github.io/expedition/es6/appdoc.html) [1](https://shirha.github.io/expedition/es6/i/1.jpg) [2](https://shirha.github.io/expedition/es6/i/2.jpg) [3](https://shirha.github.io/expedition/es6/i/3.jpg)
+      - [Glyphs Detector](https://shirha.github.io/expedition/es6/)
+        -  [Docs](https://shirha.github.io/expedition/es6/appdoc.html)
       - [Two Glyphs](https://shirha.github.io/expedition/Two%20Glyphs.html)
       - [Portal](https://shirha.github.io/expedition/portal.html)
       - [Ships](https://shirha.github.io/expedition/Ships_and_Pilots2.html) & [Pilots](https://shirha.github.io/expedition/Ships_and_Pilots1.png)
@@ -44,6 +44,7 @@
 
 
 <!--
+        -  [Docs](https://shirha.github.io/expedition/es6/appdoc.html) [1](https://shirha.github.io/expedition/es6/i/1.jpg) [2](https://shirha.github.io/expedition/es6/i/2.jpg) [3](https://shirha.github.io/expedition/es6/i/3.jpg)
 [Amenni-Akr // Tasburyd W46](https://shirha.github.io/expedition/slideshow1.html?index=26)
 - [Bitcoin Value Proposition](https://shirha.github.io/economy/bitcoin_value_proposition.png)
 [Doom](https://drive.google.com/open?id=15tkgXE1KFRBEXvJIuYmsN-htulK4ZceT)
