@@ -31,7 +31,7 @@
     - [The Fade](https://shirha.github.io/fade/)
     - [Blueprints](https://shirha.github.io/blueprints/)
     - [Expeditions](https://shirha.github.io/expedition/)
-    - [GGF - Planet Radius Calculator](https://shirha.github.io/expedition/ggf-planet%20radius%20calculator.html)
+      - [GGF - Planet Radius Calculator](https://shirha.github.io/expedition/ggf-planet%20radius%20calculator.html)
       - [Glyphs Detector](https://shirha.github.io/expedition/es6/index.html)
         - [Docs](https://shirha.github.io/expedition/es6/appdoc.html)
     - [Travellers](https://shirha.github.io/travellers)
