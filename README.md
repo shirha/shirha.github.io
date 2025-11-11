@@ -28,12 +28,13 @@
     - [Skills Tracker](https://shirha.github.io/digipick/skills.html)
     
 * NMS
-    - [The Fade](https://shirha.github.io/fade/)
-    - [Blueprints](https://shirha.github.io/blueprints/)
+    - [Saves Manager](https://shirha.github.io/nms-saves-manager/static/slideshow2.html)
     - [Expeditions](https://shirha.github.io/expedition/)
+    - [The Fade](https://shirha.github.io/fade/)
       - [GGF's Planet Radius Calculator](https://shirha.github.io/expedition/ggf's_planet_radius_calculator.html)
       - [Glyphs Detector](https://shirha.github.io/expedition/es6/index.html)
         - [Docs](https://shirha.github.io/expedition/es6/appdoc.html)
+    - [Blueprints](https://shirha.github.io/blueprints/)
     - [Travellers](https://shirha.github.io/travellers)
     - [Two Glyphs](https://shirha.github.io/expedition/Two%20Glyphs.html)
     - [Portal](https://shirha.github.io/expedition/portal.html)
