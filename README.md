@@ -4,7 +4,7 @@
 
 [Freecell](http://shirha.github.io/freecell)
 
-[Emoji](https://shirha.github.io/emoji/)
+[Emoji](https://shirha.github.io/emoji/) [QR](https://shirha.github.io/emoji/chrome-qrcode.png)
 
 [Sudoku](https://shirha.github.io/sudoku/)
 
