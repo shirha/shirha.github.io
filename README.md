@@ -28,7 +28,7 @@
     - [Skills Tracker](https://shirha.github.io/digipick/skills.html)
     
 * NMS
-    - [Saves Manager](https://shirha.github.io/nms-saves-manager/static/slideshow2.html)
+    - [Saves Manager](https://github.com/shirha/nms_saves_manager)
     - [Expeditions](https://shirha.github.io/expedition/)
     - [The Fade](https://shirha.github.io/fade/)
       - [GGF's Planet Radius Calculator](https://shirha.github.io/expedition/ggf's_planet_radius_calculator.html)
