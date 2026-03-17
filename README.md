@@ -16,6 +16,7 @@
 
 [Silver Barter](https://shirha.github.io/barter/)
     - [Docs](https://shirha.github.io/barter/docs.html)
+    - [Bulk Pennies](https://shirha.github.io/barter/bulk_pennies.html)
 
 [YouTube Econ](https://shirha.github.io/economy/)<br>
 
