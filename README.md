@@ -18,7 +18,7 @@
     - [Docs](https://shirha.github.io/barter/docs.html)
     - [Bulk Pennies](https://shirha.github.io/barter/bulk_pennies.html)
 
-[YouTube Econ](https://shirha.github.io/economy/)<br>
+[YouTube Econ](https://shirha.github.io/economy/)
     - [btc24](https://shirha.github.io/economy/bitcoin_10x_cagr.html)
 
 [Behavioral Finance](https://shirha.github.io/behavioral-finance/content/Genre_behavioralfinance.html)<br>
