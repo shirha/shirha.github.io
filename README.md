@@ -46,7 +46,7 @@
     - [Derelict](http://192.168.0.10:5000)
   
 [Oblivion](https://shirha.github.io/oblivion/)
-    - [Pestle](https://shirha.github.io/oblivion/pestle/skyrim2.html)
+    - [Pestle](https://shirha.github.io/oblivion/pestle/skyrim1.html)
 
 
 <!--
