@@ -20,6 +20,7 @@
 
 [YouTube Econ](https://shirha.github.io/economy/)
     - [btc24](https://shirha.github.io/economy/bitcoin_10x_cagr.html)
+    - [power law](https://shirha.github.io/economy/power_law.html)
 
 [Behavioral Finance](https://shirha.github.io/behavioral-finance/content/Genre_behavioralfinance.html)<br>
     - [Deflation Essay](https://shirha.github.io/behavioral-finance/deflation_essay.html)
