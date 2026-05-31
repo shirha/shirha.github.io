@@ -49,7 +49,7 @@
 [Oblivion](https://shirha.github.io/oblivion/)
     - [Pestle](https://shirha.github.io/oblivion/pestle/skyrim1.html)
 
-[Skyrim Wabbajack](https://shirha.github.io/Modlists/)
+[Skyrim Wabbajack](https://github.com/shirha/Modlists)/)
 <!--
         -  [Docs](https://shirha.github.io/expedition/es6/appdoc.html) [1](https://shirha.github.io/expedition/es6/i/1.jpg) [2](https://shirha.github.io/expedition/es6/i/2.jpg) [3](https://shirha.github.io/expedition/es6/i/3.jpg)
 [Amenni-Akr // Tasburyd W46](https://shirha.github.io/expedition/slideshow1.html?index=26)
