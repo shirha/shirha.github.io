@@ -48,6 +48,7 @@
   
 [Oblivion](https://shirha.github.io/oblivion/)
     - [Pestle](https://shirha.github.io/oblivion/pestle/skyrim1.html)
+    - [ns3](https://shirha.github.io/oblivion/ns/)
 
 [Skyrim Wabbajack](https://shirha.github.io/Modlists)
 
