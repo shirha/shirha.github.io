@@ -47,9 +47,10 @@
     - [Derelict](http://192.168.0.10:5000)
 
 
-* [Oblivion](https://shirha.github.io/oblivion/)
+[Oblivion](https://shirha.github.io/oblivion/)
     - [Pestle](https://shirha.github.io/oblivion/pestle/skyrim1.html)
-    - [Nordic Souls 3](https://shirha.github.io/oblivion/ns/)
+ 
+  * [Nordic Souls 3](https://shirha.github.io/oblivion/ns/)
     - [ns3 base](https://shirha.github.io/oblivion/base/)
     - [base code](https://github.com/shirha/oblivion/tree/main/base)
 
