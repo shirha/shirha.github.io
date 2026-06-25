@@ -49,7 +49,7 @@
 [Oblivion](https://shirha.github.io/oblivion/)
     - [Pestle](https://shirha.github.io/oblivion/pestle/skyrim1.html)
     - [Nordic Souls 3](https://shirha.github.io/oblivion/ns/)
-    - [ns base](https://shirha.github.io/oblivion/base/)
+    - [ns3 base](https://shirha.github.io/oblivion/base/)
 
 [Skyrim Wabbajack](https://shirha.github.io/Modlists)
 
