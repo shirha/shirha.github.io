@@ -40,7 +40,7 @@
     - [Blueprints](https://shirha.github.io/blueprints/)
     - [Travellers](https://shirha.github.io/travellers)
     - [Two Glyphs](https://shirha.github.io/expedition/Two%20Glyphs.html)
-    - [Portal](https://shirha.github.io/expedition/portal.html)
+    - [Portal](https://shirha.github.io/expedition/gateway.html)
     - [Ships](https://shirha.github.io/expedition/Ships_and_Pilots2.html) & [Pilots](https://shirha.github.io/expedition/Pilots2.png)
     - [GalacticHub bases](https://shirha.github.io/ghbases/)
     - [QBall's Haulers](https://shirha.github.io/haulers/)
